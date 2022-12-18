@@ -1,0 +1,65 @@
+@font-face {
+    font-family: 'zabras';
+    src: url('fonts/Zabars.ttf') format('truetype')
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 95vh;
+    background-image: url('backgroundimage/background.png');
+    background-position: center;
+    font-family: 'zabras', Arial, Helvetica, sans-serif;
+}
+
+canvas {
+    background-color: black;
+}
+
+.start {
+    width: 720px;
+    height: 480px;
+    position: absolute;
+}
+
+.start img {
+    width: 720px;
+    height: 480px;
+}
+
+.start button {
+    position: absolute;
+    z-index: 2;
+    top: 5%;
+    left: 5%;
+    width: 120px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 15px;
+    background-color: rgb(153, 68, 9);
+    color: #FFD111;
+    font-weight: 700;
+    font-size: 30px;
+    cursor: pointer;
+    font-family: 'Indie Flower', cursive;
+}
+
+.d-none {
+    display: none;
+}
+
+.bullet {
+    position: absolute;
+    z-index: 3;
+    width: 20px;
+    height: 20px;
+    top: 26px;
+    left: 65px;
+}
+
+.bullet img {
+    width: 20px;
+    height: 20px;
+}
