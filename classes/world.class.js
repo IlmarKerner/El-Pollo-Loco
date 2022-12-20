@@ -11,6 +11,7 @@ class World {
     throwBottle = [];
     audio_coin = new Audio('../audio/coin.mp3');
     audio_bottle = new Audio('../audio/bottle.mp3');
+    audio_throw_bottle = new Audio('../audio/flyingBottles.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -37,6 +38,7 @@ class World {
 
     checkThorwObjects() {
         if (this.keyboard.E) {
+            this.audio_throw_bottle.play();
             let bottle = new ThrowBottle(this.character.x + 50, this.character.y + 100);
             this.throwBottle.push(bottle);
             this.bottlebar.setPercentBottles(this.character.bottle -= 1);
