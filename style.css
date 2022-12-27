@@ -63,3 +63,10 @@ canvas {
     width: 20px;
     height: 20px;
 }
+
+.soundmute img {
+    margin-top: 50px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}

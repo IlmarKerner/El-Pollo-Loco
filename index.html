@@ -33,7 +33,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
 </head>
 
-<body onload="init()">
+<body onload="init(), playChickensound()">
     <!-- <div class="start" id="startscreen">
         <img src="img\9_intro_outro_screens\start\startscreen_1.png">
         <button onclick="init()">Start</button>
@@ -45,6 +45,11 @@
     <canvas id="canvas" width="720" height="480">
 
     </canvas>
+
+    <div class="soundmute">
+        <img src="img/10_images/sound.png" id="sound" onclick="muteSound()">
+        <img src="img/10_images/mute.png" class="d-none" id="soundmute" onclick="playSound()">
+    </div>
 </body>
 
 </html>

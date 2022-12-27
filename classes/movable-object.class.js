@@ -90,4 +90,8 @@ class MovableObject extends DrawableObject {
         timepassed = timepassed / 1000; //Teilung durch 1000 ergibt Sekunden
         return timepassed < 0.1;
     }
+
+    distanceToCharacter() {
+        return this.x - this.world.character.x;
+    }
 }

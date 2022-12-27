@@ -60,7 +60,6 @@ class World {
                 this.character.coinHit();
                 this.coinbar.setPercentCoins(this.character.coin);
                 this.level.coins.splice(i, 1);
-                console.log(this.character.coin)
                 this.audio_coin.play();
             }
         });
@@ -72,7 +71,6 @@ class World {
                 this.character.bottleHit();
                 this.bottlebar.setPercentBottles(this.character.bottle);
                 this.level.bottles.splice(i, 1);
-                console.log(this.character.bottle)
                 this.audio_bottle.play();
             }
         });
@@ -150,4 +148,6 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
+
+
 }

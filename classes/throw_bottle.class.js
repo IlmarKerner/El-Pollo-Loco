@@ -36,46 +36,20 @@ class ThrowBottle extends MovableObject {
         setInterval(() => {
             this.x += 10;
         }, 1000 / 60);
-
         this.animate();
-        if (this.otherDirection) {
-            this.throwLeft();
-
-        } else {
-            // this.throwRight();
-        }
     }
-
-    throwLeft() {
-        setInterval(() => {
-            if (!this.collided) {
-                this.x -= this.speedX;
-                this.animation(this.IMAGES_BOTTLE);
-            } else {
-                this.splash();
-            }
-        }, 1000 / 25);
-    }
-
-    // throwRight() {
-    //     setInterval(() => {
-    //         if (!this.collided) {
-    //             this.x += this.speedX;
-    //             this.animation(this.IMAGES_BOTTLE);
-    //         } else {
-    //             this.splash();
-    //         }
-    //     }, 1000 / 25);
-    // }
-
-    // splash() {
-    //     this.x += this.speedX;
-    //     this.singleAnimation(this.IMAGES_DAMAGED_BOTTLE);
-    // }
 
     animate() {
         setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-        }, 150);
+            this.playAnimation(this.IMAGES_BOTTLE);
+        }, 1000 / 40);
     }
+
+    splashBotlle() {
+        if (this.y = 180) {
+            this.playAnimation(this.IMAGES_DAMAGED_BOTTLE)
+            this.level.bottles.splice(i, 1);
+        }
+    }
+
 }
