@@ -1,5 +1,4 @@
 class ThrowBottle extends MovableObject {
-
     collided = false;
 
     IMAGES_BOTTLE = [
@@ -21,22 +20,34 @@ class ThrowBottle extends MovableObject {
     constructor(x, y) {
         super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.IMAGES_BOTTLE);
+        this.loadImages(this.IMAGES_DAMAGED_BOTTLE);
         this.x = x;
         this.y = y;
         this.height = 80;
         this.width = 80;
         this.throw();
-
-
     }
 
     throw () {
-        this.speedY = 15;
+        this.speedY = 30;
         this.applyGravity();
         setInterval(() => {
             this.x += 10;
+            this.speedY -= 1;
         }, 1000 / 60);
-        this.animate();
+
+        if (this.y == 40) {
+            this.splashBottle();
+            console.log('klappt');
+        } else {
+
+            this.animate();
+        };
+
+        // if (this.hitChicken() && this.hitEndboss()) {
+        //     this.splashBottle();
+        // }
+        console.log(this.speedY)
     }
 
     animate() {
@@ -45,11 +56,9 @@ class ThrowBottle extends MovableObject {
         }, 1000 / 40);
     }
 
-    splashBotlle() {
-        if (this.y = 180) {
-            this.playAnimation(this.IMAGES_DAMAGED_BOTTLE)
-            this.level.bottles.splice(i, 1);
-        }
+    splashBottle() {
+        setInterval(() => {
+            this.playAnimation(this.IMAGES_DAMAGED_BOTTLE);
+        }, 100);
     }
-
 }

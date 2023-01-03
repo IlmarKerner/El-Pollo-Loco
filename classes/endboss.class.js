@@ -3,7 +3,6 @@ class Endboss extends MovableObject {
     width = 300;
     height = 500;
     y = -30;
-    bosslife = 3;
 
     IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -54,13 +53,12 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT_BOSS);
         this.loadImages(this.IMAGES_DEAD_BOSS);
         this.x = 300;
-        if (this.bosslife >= 1) {
+        if (this.bossEnergy >= 10) {
             this.animate();
-        } else {
-            this.animateDeadBoss();
         }
-
     }
+
+
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_ALERT);

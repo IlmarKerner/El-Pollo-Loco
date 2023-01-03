@@ -5,6 +5,7 @@ class World {
     canvas;
     keyboard;
     camera_x = 0;
+
     healthbar = new StatusBar();
     coinbar = new Coinbar();
     bottlebar = new Bottlebar();
@@ -12,6 +13,7 @@ class World {
     audio_coin = new Audio('../audio/coin.mp3');
     audio_bottle = new Audio('../audio/bottle.mp3');
     audio_throw_bottle = new Audio('../audio/flyingBottles.mp3');
+    audio_hit_bottle = new Audio('../audio/splashBottle.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -33,6 +35,9 @@ class World {
             this.checkThorwObjects();
             this.checkCollisionsWithBottles();
             this.checkCollisionsWithFlyingBottles();
+            this.hitEnemy();
+            this.hitBosschicken();
+            // this.endscreen();
         }, 100);
     }
 
@@ -88,6 +93,28 @@ class World {
         });
     }
 
+    hitEnemy() {
+        this.level.enemies.forEach((enemies) => {
+            this.throwBottle.forEach((throwBottle) => {
+                if (throwBottle.isColliding(enemies)) {
+                    enemies.hitChicken();
+                    this.audio_hit_bottle.play();
+                }
+            });
+        });
+    }
+
+    hitBosschicken() {
+        this.level.endboss.forEach((endboss) => {
+            this.throwBottle.forEach((throwBottle) => {
+                if (throwBottle.isColliding(endboss)) {
+                    endboss.hitEndboss();
+                    this.audio_hit_bottle.play();
+                }
+            });
+        });
+    }
+
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
@@ -103,7 +130,9 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.throwBottle);
+        // this.addObjectsToMap(this.splashBottle);
         this.ctx.translate(-this.camera_x, 0);
         self = this;
         requestAnimationFrame(function() {
@@ -145,9 +174,12 @@ class World {
     }
 
     flipImageBack(mo) {
-        mo.x = mo.x * -1;
-        this.ctx.restore();
-    }
-
-
+            mo.x = mo.x * -1;
+            this.ctx.restore();
+        }
+        // endscreen() {
+        //     if (this.character.energy == 0) {
+        //         document.getElementById('endscreen').classList.remove('d-none');
+        //     }
+        // }
 }

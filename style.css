@@ -6,12 +6,23 @@
 body {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-    height: 95vh;
+    height: 96vh;
     background-image: url('backgroundimage/background.png');
     background-position: center;
     font-family: 'zabras', Arial, Helvetica, sans-serif;
+}
+
+body h1 {
+    font-size: 50px;
+}
+
+.el-pollo-loco {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-position: center;
 }
 
 canvas {
@@ -22,6 +33,9 @@ canvas {
     width: 720px;
     height: 480px;
     position: absolute;
+    top: 39%;
+    left: 50%;
+    transform: translate(-50%, -40%);
 }
 
 .start img {
@@ -65,8 +79,152 @@ canvas {
 }
 
 .soundmute img {
-    margin-top: 50px;
+    margin-top: 10px;
     width: 50px;
     height: 50px;
     cursor: pointer;
+}
+
+.endscreen {
+    width: 720px;
+    height: 480px;
+    position: absolute;
+    top: 39%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.endscreen button {
+    position: absolute;
+    z-index: 8;
+    border: 3px solid rgb(255, 216, 8);
+    font-size: 30px;
+    margin-bottom: 200px;
+    background-color: rgba(82, 137, 155, 0.1);
+    color: rgb(255, 216, 8);
+    cursor: pointer;
+    padding: 10px 30px 10px 30px;
+    border-radius: 10px;
+}
+
+.endscreenImage1 img {
+    width: 720px;
+    height: 480px;
+    position: absolute;
+    top: 39%;
+    left: 50%;
+    transform: translate(-50%, -39%);
+    z-index: 7;
+}
+
+.endscreenImage2 img {
+    width: 720px;
+    height: 480px;
+    position: absolute;
+    top: 39%;
+    left: 50%;
+    transform: translate(-50%, -39%);
+    z-index: 6;
+}
+
+.description {
+    width: 720px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.description h2 {
+    font-size: 30px;
+    margin: 0;
+}
+
+.left {
+    display: flex;
+    width: 300px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left h3 {
+    font-size: 25px;
+    margin: 0;
+}
+
+.left h4 {
+    font-size: 30px;
+    margin: 0;
+}
+
+.left img {
+    width: 40px;
+}
+
+.right {
+    display: flex;
+    width: 300px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.right h3 {
+    font-size: 25px;
+    margin: 0;
+}
+
+.right h4 {
+    font-size: 30px;
+    margin: 0;
+}
+
+.right img {
+    width: 40px;
+}
+
+.up {
+    display: flex;
+    width: 300px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.up h3 {
+    font-size: 25px;
+    margin: 0;
+}
+
+.up h4 {
+    font-size: 30px;
+    margin: 0;
+}
+
+.up img {
+    width: 40px;
+}
+
+.throwBottle {
+    display: flex;
+    width: 300px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.throwBottle h3 {
+    font-size: 25px;
+    margin: 0;
+    width: 50px;
+}
+
+.throwBottle h4 {
+    font-size: 30px;
+    margin: 0;
+}
+
+.throwBottle img {
+    width: 40px;
 }

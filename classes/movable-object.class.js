@@ -7,6 +7,8 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     coin = 0;
     bottle = 0;
+    chickenEnergy = 10;
+    bossEnergy = 30;
 
     applyGravity() {
         setInterval(() => {
@@ -55,12 +57,34 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        this.energy -= 1;
+        this.energy -= 10;
         if (this.energy <= 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
+    }
+
+    hitChicken() {
+        this.chickenEnergy -= 10;
+        if (this.chickenEnergy <= 0) {
+            this.chickenEnergy = 0;
+            // this.chickenDeadAnimation();
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    hitEndboss() {
+        this.bossEnergy -= 10;
+        if (this.bossEnergy <= 0) {
+            this.bossEnergy = 0;
+            this.animateDeadBoss();
+        } else if (this.bossEnergy > 0) {
+            this.lastHit = new Date().getTime();
+            this.animateHurtBoss();
+        }
+
     }
 
     coinHit() {

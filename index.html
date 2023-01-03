@@ -33,8 +33,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
 </head>
 
-<body onload="init(), playChickensound()">
-    <!-- <div class="start" id="startscreen">
+<body onload="init()">
+    <h1>El Pollo Loco</h1>
+    <div class="el-pollo-loco">
+        <!-- <div class="start" id="startscreen">
         <img src="img\9_intro_outro_screens\start\startscreen_1.png">
         <button onclick="init()">Start</button>
         <div class="bullet d-none" id="shot">
@@ -42,13 +44,49 @@
         </div>
     </div> -->
 
-    <canvas id="canvas" width="720" height="480">
-
+        <canvas id="canvas" width="720" height="480">
+        
     </canvas>
-
-    <div class="soundmute">
-        <img src="img/10_images/sound.png" id="sound" onclick="muteSound()">
-        <img src="img/10_images/mute.png" class="d-none" id="soundmute" onclick="playSound()">
+        <div class="soundmute">
+            <img src="img/10_images/sound.png" id="sound" onclick="muteSound()">
+            <img src="img/10_images/mute.png" class="d-none" id="soundmute" onclick="playSound()">
+        </div>
+        <!-- <div id="endscreen" class="endscreen d-none">
+        <div class="endscreenImage1">
+            <img src="img/9_intro_outro_screens/game_over/game over!.png">
+        </div>
+        <div class="endscreenImage2">
+            <img src="img/5_background/first_half_background.png">
+        </div>
+        <button>New Game</button>
+    </div> -->
+    </div>
+    <div class="description">
+        <h2>Description :</h2>
+        <div class="left">
+            <h3>Left:</h3>
+            <img src="img/10_images/left.png">
+            <h3>or</h3>
+            <h4>A</h4>
+        </div>
+        <div class="right">
+            <h3>Right:</h3>
+            <img src="img/10_images/right.png">
+            <h3>or</h3>
+            <h4>D</h4>
+        </div>
+        <div class="up">
+            <h3>Jump:</h3>
+            <img src="img/10_images/up.png">
+            <h3>or</h3>
+            <h4>Space</h4>
+        </div>
+        <div class="throwBottle">
+            <h3>Throw Bottle:</h3>
+            <img src="img/10_images/enter.png">
+            <h3>or</h3>
+            <h4>E</h4>
+        </div>
     </div>
 </body>
 
