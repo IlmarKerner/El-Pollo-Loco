@@ -37,7 +37,7 @@ class ThrowBottle extends MovableObject {
             this.speedY -= 1;
         }, 1000 / 60);
 
-        if (this.bossEnergy > 0) {
+        if (this.hitEndboss()) {
             this.splashBottle();
             console.log('klappt');
         } else {
@@ -49,7 +49,6 @@ class ThrowBottle extends MovableObject {
         // if (this.hitChicken() && this.hitEndboss()) {
         //     this.splashBottle();
         // }
-        console.log(this.speedY)
     }
 
     animate() {

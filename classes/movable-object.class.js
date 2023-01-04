@@ -10,6 +10,7 @@ class MovableObject extends DrawableObject {
     chickenEnergy = 10;
     bossEnergy = 30;
 
+
     applyGravity() {
         setInterval(() => {
             if (this.isInAir() || this.speedY > 0) {
