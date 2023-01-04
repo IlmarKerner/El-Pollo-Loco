@@ -54,7 +54,6 @@ class Character extends MovableObject {
         'img/2_character_pepe/1_idle/idle/I-10.png'
     ]
 
-    walking_sound = new Audio('audio/walk.mp3')
     jumping_sound = new Audio('audio/jump.mp3')
 
     constructor() {

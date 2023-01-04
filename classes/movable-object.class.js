@@ -9,14 +9,13 @@ class MovableObject extends DrawableObject {
     bottle = 0;
     chickenEnergy = 10;
     bossEnergy = 30;
-
+    walking_sound = new Audio('audio/walk.mp3');
 
     applyGravity() {
         setInterval(() => {
             if (this.isInAir() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
-                // this.walking_sound.pause();
             }
         }, 1000 / 60);
     }
@@ -30,12 +29,15 @@ class MovableObject extends DrawableObject {
     }
 
     moveRight() {
-        this.x += this.speed;
+        if (!this.isDead()) {
+            this.x += this.speed;
+        }
     }
 
     moveLeft() {
-        this.x -= this.speed;
-
+        if (!this.isDead()) {
+            this.x -= this.speed;
+        }
     };
 
     playAnimation(images) {
