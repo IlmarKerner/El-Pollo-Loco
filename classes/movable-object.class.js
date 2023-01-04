@@ -17,7 +17,6 @@ class MovableObject extends DrawableObject {
                 this.speedY -= this.acceleration;
                 // this.walking_sound.pause();
             }
-
         }, 1000 / 60);
     }
 
@@ -69,7 +68,6 @@ class MovableObject extends DrawableObject {
         this.chickenEnergy -= 10;
         if (this.chickenEnergy <= 0) {
             this.chickenEnergy = 0;
-            // this.chickenDeadAnimation();
         } else {
             this.lastHit = new Date().getTime();
         }
@@ -79,12 +77,19 @@ class MovableObject extends DrawableObject {
         this.bossEnergy -= 10;
         if (this.bossEnergy <= 0) {
             this.bossEnergy = 0;
-            this.animateDeadBoss();
         } else if (this.bossEnergy > 0) {
             this.lastHit = new Date().getTime();
-            this.animateHurtBoss();
         }
 
+    }
+
+    hitCharacterWithEndbossAndChicken() {
+        this.bossEnergy -= 5;
+        if (this.bossEnergy <= 0) {
+            this.bossEnergy = 0;
+        } else if (this.bossEnergy > 0) {
+            this.lastHit = new Date().getTime();
+        }
     }
 
     coinHit() {

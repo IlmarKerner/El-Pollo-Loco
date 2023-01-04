@@ -54,7 +54,7 @@ window.addEventListener("keydown", (e) => {
     }
 
     if (e.keyCode == 13) {
-        keyboard.E = true;
+        keyboard.ENTER = true;
     }
 });
 
@@ -95,6 +95,6 @@ window.addEventListener("keyup", (e) => {
     }
 
     if (e.keyCode == 13) {
-        keyboard.E = false;
+        keyboard.ENTER = false;
     }
 });

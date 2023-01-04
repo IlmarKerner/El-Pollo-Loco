@@ -25,24 +25,26 @@ class ThrowBottle extends MovableObject {
         this.y = y;
         this.height = 80;
         this.width = 80;
-        this.throw();
+        this.throw(this.x, this.y);
     }
 
     throw () {
         this.speedY = 30;
+        this.speedX = 15;
         this.applyGravity();
         setInterval(() => {
             this.x += 10;
             this.speedY -= 1;
         }, 1000 / 60);
 
-        if (this.y == 40) {
+        if (this.bossEnergy > 0) {
             this.splashBottle();
             console.log('klappt');
         } else {
-
             this.animate();
         };
+
+
 
         // if (this.hitChicken() && this.hitEndboss()) {
         //     this.splashBottle();
