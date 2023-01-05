@@ -73,13 +73,14 @@ class Endboss extends MovableObject {
                     this.playAnimation(this.IMAGES_ATTACK)
                 }, 1500);
             } else if (this.bossEnergy == 10 && !this.angryBoss) {
-                this.speed = 0;
                 this.playAnimation(this.IMAGES_HURT_BOSS);
                 setTimeout(() => {
                     this.speed = 20;
+                    this.moveLeft();
                     this.playAnimation(this.IMAGES_WALK);
                     this.playAnimation(this.IMAGES_ATTACK);
-                }, 500);
+                    this.angryBoss = false;
+                }, 1500);
             } else if (this.bossEnergy == 0) {
                 this.speed = 0;
                 this.playAnimation(this.IMAGES_DEAD_BOSS);
