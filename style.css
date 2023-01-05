@@ -7,14 +7,16 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 96vh;
+    height: 100vh;
     background-image: url('backgroundimage/background.png');
     background-position: center;
     font-family: 'zabras', Arial, Helvetica, sans-serif;
+    margin: 0;
 }
 
 body h1 {
     font-size: 50px;
+    margin: 10px;
 }
 
 .el-pollo-loco {
@@ -79,7 +81,7 @@ canvas {
 }
 
 .soundmute img {
-    margin-top: 10px;
+    margin-bottom: 10px;
     width: 50px;
     height: 50px;
     cursor: pointer;
@@ -133,10 +135,11 @@ canvas {
 
 .description {
     width: 720px;
-    height: 250px;
+    height: 220px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-top: 10px;
 }
 
 .description h2 {

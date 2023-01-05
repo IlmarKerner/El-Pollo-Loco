@@ -104,11 +104,15 @@ class World {
     }
 
     hitEnemy() {
-        this.level.enemies.forEach((enemies) => {
+        this.level.enemies.forEach((enemies, i) => {
             this.throwBottle.forEach((throwBottle) => {
                 if (throwBottle.isColliding(enemies)) {
                     enemies.hitChicken();
                     this.audio_hit_bottle.play();
+                    setTimeout(() => {
+                        this.level.enemies.splice(i, 1);
+                    }, 500);
+
                 }
             });
         });

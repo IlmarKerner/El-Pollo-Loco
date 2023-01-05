@@ -59,6 +59,36 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
+    // animate() { // diese Funktion funktioniert -> Distanzaktivierung muss noch rein. 
+    //     this.angryBoss == true;
+    //     setInterval(() => {
+    //         if (this.bossEnergy == 30) {
+    //             this.playAnimation(this.IMAGES_ALLERT)
+    //         }
+    //         if (this.bossEnergy == 20 && !this.angryBoss) {
+    //             this.playAnimation(this.IMAGES_HURT_BOSS);
+    //             setTimeout(() => {
+    //                 this.moveLeft();
+    //                 this.playAnimation(this.IMAGES_WALK);
+    //                 this.playAnimation(this.IMAGES_ATTACK)
+    //             }, 1500);
+    //         } else if (this.bossEnergy == 10 && !this.angryBoss) {
+    //             this.playAnimation(this.IMAGES_HURT_BOSS);
+    //             this.speed = 0;
+    //             setTimeout(() => {
+    //                 this.speed = 20;
+    //                 this.moveLeft();
+    //                 this.playAnimation(this.IMAGES_WALK);
+    //                 this.playAnimation(this.IMAGES_ATTACK);
+    //                 this.angryBoss = false;
+    //             }, 1500);
+    //         } else if (this.bossEnergy == 0) {
+    //             this.speed = 0;
+    //             this.playAnimation(this.IMAGES_DEAD_BOSS);
+    //         }
+    //     }, 150);
+    // }
+
     animate() {
         this.angryBoss == true;
         setInterval(() => {
@@ -67,12 +97,16 @@ class Endboss extends MovableObject {
             }
             if (this.bossEnergy == 20 && !this.angryBoss) {
                 this.playAnimation(this.IMAGES_HURT_BOSS);
+                this.speed = 0;
                 setTimeout(() => {
+                    this.speed = 20;
                     this.moveLeft();
                     this.playAnimation(this.IMAGES_WALK);
-                    this.playAnimation(this.IMAGES_ATTACK)
+                    this.playAnimation(this.IMAGES_ATTACK);
+                    this.angryBoss = false;
                 }, 1500);
             } else if (this.bossEnergy == 10 && !this.angryBoss) {
+                this.angryBoss = true;
                 this.playAnimation(this.IMAGES_HURT_BOSS);
                 this.speed = 0;
                 setTimeout(() => {
@@ -119,36 +153,3 @@ class Endboss extends MovableObject {
         }, 150);
     }
 }
-
-// animate() {
-//     this.angryBoss = false;
-//     setInterval(() => {
-//         if (this.bossEnergy == 20) {
-//             this.angryBoss = true;
-//             if (this.angryBoss == true) {
-//                 this.playAnimation(this.IMAGES_HURT_BOSS);
-//                 setTimeout(() => {
-//                     this.moveLeft();
-//                     this.playAnimation(this.IMAGES_WALK);
-//                     this.playAnimation(this.IMAGES_ATTACK)
-//                     this.angryBoss = false;
-//                 }, 1500);
-//             }
-//         } else if (this.bossEnergy == 10) {
-//             this.angryBoss = true;
-//             this.speed = 0
-//             if (this.angryBoss = true) {
-//                 this.playAnimation(this.IMAGES_HURT_BOSS);
-//                 setTimeout(() => {
-//                     this.speed = 20;
-//                     this.playAnimation(this.IMAGES_WALK);
-//                     this.playAnimation(this.IMAGES_ATTACK)
-//                     this.speed = 20;
-//                 }, 500);
-//             }
-//         } else if (this.bossEnergy == 0) {
-//             this.speed = 0;
-//             this.playAnimation(this.IMAGES_DEAD_BOSS)
-//         }
-//     }, 150);
-// }
