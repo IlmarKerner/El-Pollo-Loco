@@ -74,6 +74,7 @@ class Endboss extends MovableObject {
                 }, 1500);
             } else if (this.bossEnergy == 10 && !this.angryBoss) {
                 this.playAnimation(this.IMAGES_HURT_BOSS);
+                this.speed = 0;
                 setTimeout(() => {
                     this.speed = 20;
                     this.moveLeft();
