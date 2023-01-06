@@ -72,7 +72,7 @@ const level1 = new Level([
     // new FlyingBottle('img/6_salsa_bottle/salsa_bottle.png', 1650),
     // new FlyingBottle('img/6_salsa_bottle/salsa_bottle.png', 2300),
 ], [
-    // new Coin(),
+    new Coin(),
     // new Coin(),
     // new Coin(),
     // new Coin(),
