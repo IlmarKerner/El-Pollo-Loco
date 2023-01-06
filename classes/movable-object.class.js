@@ -10,6 +10,7 @@ class MovableObject extends DrawableObject {
     chickenEnergy = 10;
     bossEnergy = 30;
     walking_sound = new Audio('audio/walk.mp3');
+    firstContact = false;
 
     applyGravity() {
         setInterval(() => {
@@ -123,7 +124,9 @@ class MovableObject extends DrawableObject {
         return timepassed < 0.1;
     }
 
-    distanceToCharacter() {
-        return this.x - this.world.character.x;
+    bossReactToCharacterDistance() {
+        if (!this.isDead() && this.world.character.x < 500 && !this.isHurt()) {
+            this.firstContact = true;
+        }
     }
 }

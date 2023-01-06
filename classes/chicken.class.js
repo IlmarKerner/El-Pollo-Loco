@@ -1,5 +1,5 @@
 class Chicken extends MovableObject {
-
+    deadChicken = false;
 
     soundMute = false;
 
@@ -19,8 +19,7 @@ class Chicken extends MovableObject {
 
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
-
-        this.x = 200 + Math.random() * 3500; // Zahl zwischen 200 und 700(bei der Funktion random ist eine Zahl nur zwischen 0 und 1)
+        this.x = 200 + Math.random() * 1500; // Zahl zwischen 200 und 700(bei der Funktion random ist eine Zahl nur zwischen 0 und 1)
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
         this.speed = 0.10 + Math.random() * 0.25;
@@ -28,27 +27,19 @@ class Chicken extends MovableObject {
     }
 
     animate() {
-        if (!this.hitChicken()) {
+        if (this.chickenEnergy == 0) {
+            this.speed = 0;
+            setInterval(() => {
+                this.playAnimation(this.IMAGES_DEAD);
+            }, 1500);
+        } else {
             setInterval(() => {
                     this.moveLeft();
                 },
                 1000 / 60);
-
             setInterval(() => {
                 this.playAnimation(this.IMAGES_WALKING);
             }, 100);
-        } else {
-            this.speed = 0;
-            this.chickenDeadAnimation();
         }
-
     }
-
-    chickenDeadAnimation() {
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_DEAD);
-        }, 100);
-    }
-
-
 }

@@ -111,8 +111,7 @@ class World {
                     this.audio_hit_bottle.play();
                     setTimeout(() => {
                         this.level.enemies.splice(i, 1);
-                    }, 500);
-
+                    }, 1500);
                 }
             });
         });
