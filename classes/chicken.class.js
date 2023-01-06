@@ -27,19 +27,18 @@ class Chicken extends MovableObject {
     }
 
     animate() {
-        if (this.chickenEnergy == 0) {
-            this.speed = 0;
-            setInterval(() => {
+        setInterval(() => {
+                this.moveLeft();
+            },
+            1000 / 60);
+        setInterval(() => {
+            if (this.chickenEnergy == 0) {
+                this.speed = 0;
                 this.playAnimation(this.IMAGES_DEAD);
-            }, 1500);
-        } else {
-            setInterval(() => {
-                    this.moveLeft();
-                },
-                1000 / 60);
-            setInterval(() => {
+            } else {
                 this.playAnimation(this.IMAGES_WALKING);
-            }, 100);
-        }
+            }
+        }, 100);
+
     }
 }

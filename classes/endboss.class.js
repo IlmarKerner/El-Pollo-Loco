@@ -4,8 +4,6 @@ class Endboss extends MovableObject {
     height = 500;
     y = -30;
 
-
-
     IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
         'img/4_enemie_boss_chicken/1_walk/G2.png',
@@ -69,8 +67,8 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_HURT_BOSS);
                 setTimeout(() => {
                     this.moveLeft();
-                    this.playAnimation(this.IMAGES_WALK);
-                    this.playAnimation(this.IMAGES_ATTACK)
+                    // this.playAnimation(this.IMAGES_WALK);
+                    // this.playAnimation(this.IMAGES_ATTACK)
                 }, 1500);
             } else if (this.bossEnergy == 10 && !this.angryBoss) {
                 this.playAnimation(this.IMAGES_HURT_BOSS);
@@ -78,8 +76,8 @@ class Endboss extends MovableObject {
                 setTimeout(() => {
                     this.speed = 30;
                     this.moveLeft();
-                    this.playAnimation(this.IMAGES_WALK);
-                    this.playAnimation(this.IMAGES_ATTACK);
+                    // this.playAnimation(this.IMAGES_WALK);
+                    // this.playAnimation(this.IMAGES_ATTACK);
                     this.angryBoss = false;
                 }, 1500);
             } else if (this.bossEnergy == 0) {
@@ -100,8 +98,6 @@ class Endboss extends MovableObject {
     //                 this.playAnimation(this.IMAGES_HURT_BOSS);
     //                 setTimeout(() => {
     //                     this.moveLeft();
-    //                     this.playAnimation(this.IMAGES_WALK);
-    //                     this.playAnimation(this.IMAGES_ATTACK)
     //                 }, 1500);
     //             } else if (this.bossEnergy == 10 && !this.angryBoss) {
     //                 this.playAnimation(this.IMAGES_HURT_BOSS);
@@ -109,8 +105,6 @@ class Endboss extends MovableObject {
     //                 setTimeout(() => {
     //                     this.speed = 30;
     //                     this.moveLeft();
-    //                     this.playAnimation(this.IMAGES_WALK);
-    //                     this.playAnimation(this.IMAGES_ATTACK);
     //                     this.angryBoss = false;
     //                 }, 1500);
     //             } else if (this.bossEnergy == 0) {

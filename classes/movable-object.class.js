@@ -72,6 +72,10 @@ class MovableObject extends DrawableObject {
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
 
+    hitFromTheTop(mo) {
+        this.y + this.height - this.offset.bottom > mo.y + mo.offset.top
+    }
+
     hit() {
         this.energy -= 10;
         if (this.energy <= 0) {

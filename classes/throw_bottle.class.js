@@ -1,6 +1,13 @@
 class ThrowBottle extends MovableObject {
     collided = false;
 
+    offset = {
+        top: 10,
+        bottom: 10,
+        left: 10,
+        right: 10
+    }
+
     IMAGES_BOTTLE = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
@@ -25,7 +32,7 @@ class ThrowBottle extends MovableObject {
         this.y = y;
         this.height = 80;
         this.width = 80;
-        this.throw(this.x, this.y);
+        this.throw();
     }
 
     throw () {
@@ -43,12 +50,6 @@ class ThrowBottle extends MovableObject {
         } else {
             this.animate();
         };
-
-
-
-        // if (this.hitChicken() && this.hitEndboss()) {
-        //     this.splashBottle();
-        // }
     }
 
     animate() {

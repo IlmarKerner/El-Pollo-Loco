@@ -21,7 +21,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.run(); //vorher "checkCollisionsWithChicken()"
+        this.run();
     }
 
     setWorld() {
@@ -37,9 +37,12 @@ class World {
             this.checkCollisionsWithBottles();
             this.checkCollisionsWithFlyingBottles();
             this.hitEnemy();
-            this.hitBosschicken();
+            this.hitEnemyFromTheTop();
             // this.endscreen();
-        }, 100);
+        }, 50);
+        setInterval(() => {
+            this.hitBosschicken();
+        }, 150);
     }
 
     checkThorwObjects() {
@@ -111,7 +114,20 @@ class World {
                     this.audio_hit_bottle.play();
                     setTimeout(() => {
                         this.level.enemies.splice(i, 1);
-                    }, 1500);
+                    }, 1000);
+                }
+            });
+        });
+    }
+
+    hitEnemyFromTheTop() {
+        this.level.enemies.forEach((enemies, i) => {
+            this.character.forEach((character) => {
+                if (character.hitFromTheTop(enemies)) {
+                    enemies.hitChicken();
+                    setTimeout(() => {
+                        this.level.enemies.splice(i, 1);
+                    }, 1000);
                 }
             });
         });
