@@ -31,15 +31,18 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisionsWithCoins();
-            this.checkCollisionsWithChicken();
+            // this.checkCollisionsWithChicken();
             // this.checkCollisionsWithEndboss();
             this.checkThorwObjects();
             this.checkCollisionsWithBottles();
             this.checkCollisionsWithFlyingBottles();
             this.hitEnemy();
             this.hitEnemyFromTheTop();
+            this.hitLittleChicken();
+            this.hitLittleChickenFromTheTop();
             // this.endscreen();
-        }, 150);
+
+        }, 1000 / 60);
         setInterval(() => {
             this.hitBosschicken();
         }, 150);
@@ -114,7 +117,7 @@ class World {
                     this.audio_hit_bottle.play();
                     setTimeout(() => {
                         this.level.enemies.splice(i, 1);
-                    }, 1000);
+                    }, 500);
                 }
             });
         });
@@ -127,7 +130,33 @@ class World {
                 this.character.jump();
                 setTimeout(() => {
                     this.level.enemies.splice(i, 1);
-                }, 1000);
+                }, 500);
+            }
+        });
+    }
+
+    hitLittleChicken() {
+        this.level.littlechicken.forEach((littlechicken, i) => {
+            this.throwBottle.forEach((throwBottle) => {
+                if (throwBottle.isColliding(littlechicken)) {
+                    littlechicken.hitLittleChicken();
+                    this.audio_hit_bottle.play();
+                    setTimeout(() => {
+                        this.level.littlechicken.splice(i, 1);
+                    }, 500);
+                }
+            });
+        });
+    }
+
+    hitLittleChickenFromTheTop() {
+        this.level.littlechicken.forEach((littlechicken, i) => {
+            if (this.character.isColliding(littlechicken) && this.character.isInAir()) {
+                littlechicken.hitLittleChicken();
+                this.character.jump();
+                setTimeout(() => {
+                    this.level.littlechicken.splice(i, 1);
+                }, 500);
             }
         });
     }
@@ -158,6 +187,7 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.littlechicken);
         this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.throwBottle);
         // this.addObjectsToMap(this.splashBottle);

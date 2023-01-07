@@ -8,6 +8,7 @@ class MovableObject extends DrawableObject {
     coin = 0;
     bottle = 0;
     chickenEnergy = 10;
+    littleChickenEnergy = 10;
     bossEnergy = 30;
     walking_sound = new Audio('audio/walk.mp3');
     offset = {
@@ -84,6 +85,15 @@ class MovableObject extends DrawableObject {
         this.chickenEnergy -= 10;
         if (this.chickenEnergy <= 0) {
             this.chickenEnergy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    hitLittleChicken() {
+        this.littleChickenEnergy -= 10;
+        if (this.littleChickenEnergy <= 0) {
+            this.littleChickenEnergy = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
