@@ -1,7 +1,7 @@
 class Character extends MovableObject {
     world;
     speed = 10;
-    y = 80;
+    y = 75;
     audio_hurt = new Audio('../audio/hurt.mp3')
 
     offset = {

@@ -10,7 +10,6 @@ class MovableObject extends DrawableObject {
     chickenEnergy = 10;
     bossEnergy = 30;
     walking_sound = new Audio('audio/walk.mp3');
-    firstContact = false;
     offset = {
         top: 0,
         bottom: 0,
@@ -70,10 +69,6 @@ class MovableObject extends DrawableObject {
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
-    }
-
-    hitFromTheTop(mo) {
-        this.y + this.height - this.offset.bottom > mo.y + mo.offset.top
     }
 
     hit() {
@@ -141,9 +136,9 @@ class MovableObject extends DrawableObject {
         return timepassed < 0.1;
     }
 
-    bossReactToCharacterDistance() {
-        if (!this.isDead() && this.world.character.x < 500 && !this.isHurt()) {
-            this.firstContact = true;
-        }
-    }
+    // bossReactToCharacterDistance() {
+    //     if (!this.isDead() && this.world.character.x <= 500 && !this.isHurt()) {
+    //         this.firstContact = true;
+    //     }
+    // }
 }

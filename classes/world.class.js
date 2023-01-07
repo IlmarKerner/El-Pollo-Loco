@@ -31,7 +31,7 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisionsWithCoins();
-            // this.checkCollisionsWithChicken();
+            this.checkCollisionsWithChicken();
             // this.checkCollisionsWithEndboss();
             this.checkThorwObjects();
             this.checkCollisionsWithBottles();
@@ -39,7 +39,7 @@ class World {
             this.hitEnemy();
             this.hitEnemyFromTheTop();
             // this.endscreen();
-        }, 50);
+        }, 150);
         setInterval(() => {
             this.hitBosschicken();
         }, 150);
@@ -56,7 +56,7 @@ class World {
 
     checkCollisionsWithChicken() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && !this.character.isInAir()) {
                 this.character.hit();
                 this.healthbar.setPercentHealth(this.character.energy);
             }
@@ -122,14 +122,13 @@ class World {
 
     hitEnemyFromTheTop() {
         this.level.enemies.forEach((enemies, i) => {
-            this.character.forEach((character) => {
-                if (character.hitFromTheTop(enemies)) {
-                    enemies.hitChicken();
-                    setTimeout(() => {
-                        this.level.enemies.splice(i, 1);
-                    }, 1000);
-                }
-            });
+            if (this.character.isColliding(enemies) && this.character.isInAir()) {
+                enemies.hitChicken();
+                this.character.jump();
+                setTimeout(() => {
+                    this.level.enemies.splice(i, 1);
+                }, 1000);
+            }
         });
     }
 
@@ -176,7 +175,6 @@ class World {
     }
 
     addToMap(mo) {
-        // try {
         if (mo.otherDirection) {
             this.flipImage(mo)
         }
@@ -188,11 +186,6 @@ class World {
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
-        // } catch (e) {
-        //     console.warn('Error loading Image', e)
-        //     console.log('konnte nicht geladen werden',
-        //         mo.img.src)
-        // }
     }
 
     flipImage(mo) {
@@ -203,12 +196,8 @@ class World {
     }
 
     flipImageBack(mo) {
-            mo.x = mo.x * -1;
-            this.ctx.restore();
-        }
-        // endscreen() {
-        //     if (this.character.energy == 0) {
-        //         document.getElementById('endscreen').classList.remove('d-none');
-        //     }
-        // }
+        mo.x = mo.x * -1;
+        this.ctx.restore();
+    }
+
 }
