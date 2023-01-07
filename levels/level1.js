@@ -1,6 +1,6 @@
 const level1 = new Level([
         new Chicken(),
-        // new Chicken(),
+        new Chicken(),
         // new Chicken(),
         // new Chicken(),
         // new Chicken(),
@@ -17,10 +17,10 @@ const level1 = new Level([
     [
         new LittleChicken(),
         new LittleChicken(),
-        new LittleChicken(),
-        new LittleChicken(),
-        new LittleChicken(),
-        new LittleChicken()
+        // new LittleChicken(),
+        // new LittleChicken(),
+        // new LittleChicken(),
+        // new LittleChicken()
     ],
 
     [
@@ -63,6 +63,18 @@ const level1 = new Level([
         new BackgroundOject('img/5_background/layers/3_third_layer/1.png', 719 * 4),
         new BackgroundOject('img/5_background/layers/2_second_layer/1.png', 719 * 4),
         new BackgroundOject('img/5_background/layers/1_first_layer/1.png', 719 * 4),
+        new BackgroundOject('img/5_background/layers/air.png', 719 * 5),
+        new BackgroundOject('img/5_background/layers/3_third_layer/1.png', 719 * 5),
+        new BackgroundOject('img/5_background/layers/2_second_layer/1.png', 719 * 5),
+        new BackgroundOject('img/5_background/layers/1_first_layer/1.png', 719 * 5),
+        new BackgroundOject('img/5_background/layers/air.png', 719 * 6),
+        new BackgroundOject('img/5_background/layers/3_third_layer/1.png', 719 * 6),
+        new BackgroundOject('img/5_background/layers/2_second_layer/1.png', 719 * 6),
+        new BackgroundOject('img/5_background/layers/1_first_layer/1.png', 719 * 6),
+        new BackgroundOject('img/5_background/layers/air.png', 719 * 7),
+        new BackgroundOject('img/5_background/layers/3_third_layer/1.png', 719 * 7),
+        new BackgroundOject('img/5_background/layers/2_second_layer/1.png', 719 * 7),
+        new BackgroundOject('img/5_background/layers/1_first_layer/1.png', 719 * 7),
     ], [
         new Bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 250),
         new Bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png', 850),

@@ -10,6 +10,7 @@ class MovableObject extends DrawableObject {
     chickenEnergy = 10;
     littleChickenEnergy = 10;
     bossEnergy = 30;
+    firstContact = false;
     walking_sound = new Audio('audio/walk.mp3');
     offset = {
         top: 0,
@@ -146,9 +147,9 @@ class MovableObject extends DrawableObject {
         return timepassed < 0.1;
     }
 
-    // bossReactToCharacterDistance() {
-    //     if (!this.isDead() && this.world.character.x <= 500 && !this.isHurt()) {
-    //         this.firstContact = true;
-    //     }
-    // }
+    bossReactToCharacterDistance() {
+        if (!this.isDead() && this.world.character.x <= 500 && !this.isHurt()) {
+            this.firstContact = true;
+        }
+    }
 }

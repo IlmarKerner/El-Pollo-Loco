@@ -88,10 +88,10 @@ class Endboss extends MovableObject {
                 this.speed = 0;
                 this.playAnimation(this.IMAGES_DEAD_BOSS);
             }
-            // if (this.world.character.x > 500 && !this.firstContact) {
-            //     this.i = 0;
-            //     this.firstContact = true;
-            // }
+            if (this.world.character.x > 500 && !this.firstContact) {
+                this.i = 0;
+                this.firstContact = true;
+            }
         }, 150);
     }
 

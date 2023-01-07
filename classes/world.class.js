@@ -40,6 +40,7 @@ class World {
             this.hitEnemyFromTheTop();
             this.hitLittleChicken();
             this.hitLittleChickenFromTheTop();
+            this.checkCollisionsWithLitteChicken();
             // this.endscreen();
 
         }, 1000 / 60);
@@ -59,6 +60,15 @@ class World {
 
     checkCollisionsWithChicken() {
         this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy) && !this.character.isInAir()) {
+                this.character.hit();
+                this.healthbar.setPercentHealth(this.character.energy);
+            }
+        });
+    }
+
+    checkCollisionsWithLitteChicken() {
+        this.level.littlechicken.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.isInAir()) {
                 this.character.hit();
                 this.healthbar.setPercentHealth(this.character.energy);
