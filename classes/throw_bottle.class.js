@@ -1,5 +1,8 @@
 class ThrowBottle extends MovableObject {
     collided = false;
+    world;
+    bottleAnimation = false;
+
 
     offset = {
         top: 10,
@@ -33,29 +36,45 @@ class ThrowBottle extends MovableObject {
         this.height = 80;
         this.width = 80;
         this.throw();
+        this.animate();
+
+        // if (this.world.character.otherDirection == true) {
+        //     this.throwLeft(20, -100)
+        // } else {
+        //     this.throw(100, 150)
+        // }
     }
 
     throw () {
-        this.speedY = 30;
-        this.speedX = 15;
+        this.speedY = 20;
+        this.speedX = 10;
         this.applyGravity();
         setInterval(() => {
             this.x += 10;
-            this.speedY -= 1;
         }, 1000 / 60);
 
-        if (this.hitEndboss()) {
-            this.splashBottle();
-            console.log('klappt');
-        } else {
-            this.animate();
-        };
+        // if (this.hitEndboss()) {
+        //     this.splashBottle();
+        //     console.log('klappt');
+        // } else {
+        //     this.animate();
+        // };
+    }
+
+    throwLeft() {
+        this.speedY = 20;
+        this.speedX = -10;
+        this.applyGravity();
+        setInterval(() => {
+            this.x += 10;
+        }, 1000 / 60);
     }
 
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_BOTTLE);
-        }, 1000 / 40);
+        }, 1000 / 20);
+
     }
 
     splashBottle() {

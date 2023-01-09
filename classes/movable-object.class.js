@@ -141,6 +141,10 @@ class MovableObject extends DrawableObject {
         return this.energy == 0;
     }
 
+    bossIsDead() {
+        return this.bossEnergy == 0;
+    }
+
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; //Differenz in Millisekunden
         timepassed = timepassed / 1000; //Teilung durch 1000 ergibt Sekunden

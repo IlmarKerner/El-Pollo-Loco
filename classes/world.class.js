@@ -5,6 +5,7 @@ class World {
     canvas;
     keyboard;
     camera_x = 0;
+    cooldownTime = false;
 
     healthbar = new StatusBar();
     coinbar = new Coinbar();
@@ -26,6 +27,7 @@ class World {
 
     setWorld() {
         this.character.world = this;
+        this.level.endboss[0].world = this;
     }
 
     run() {
@@ -33,14 +35,15 @@ class World {
             this.checkCollisionsWithCoins();
             // this.checkCollisionsWithChicken();
             // this.checkCollisionsWithEndboss();
-            this.checkThorwObjects();
+            this.checkThorwObjectsRight();
+            this.checkThorwObjectsLeft();
             this.checkCollisionsWithBottles();
             this.checkCollisionsWithFlyingBottles();
             this.hitEnemy();
             this.hitEnemyFromTheTop();
             this.hitLittleChicken();
             this.hitLittleChickenFromTheTop();
-            this.checkCollisionsWithLitteChicken();
+            // this.checkCollisionsWithLitteChicken();
             // this.endscreen();
 
         }, 1000 / 60);
@@ -49,12 +52,33 @@ class World {
         }, 150);
     }
 
-    checkThorwObjects() {
-        if (this.keyboard.E && this.character.bottle > 0) {
+
+
+    checkThorwObjectsRight() {
+        if (this.keyboard.E && this.character.bottle > 0 && this.cooldownTime == false) {
             this.audio_throw_bottle.play();
             let bottle = new ThrowBottle(this.character.x + 50, this.character.y + 100);
             this.throwBottle.push(bottle);
             this.bottlebar.setPercentBottles(this.character.bottle -= 1);
+            this.cooldownTime = true;
+            this.otherDirection = true;
+            setTimeout(() => {
+                this.cooldownTime = false;
+            }, 1000);
+        }
+    }
+
+    checkThorwObjectsLeft() {
+        if (this.keyboard.E && this.character.bottle > 0 && this.cooldownTime == false) {
+            this.audio_throw_bottle.play();
+            let bottle = new ThrowBottle(this.character.x + 0, this.character.y + 100);
+            this.throwBottle.push(bottle);
+            this.bottlebar.setPercentBottles(this.character.bottle -= 1);
+            this.cooldownTime = true;
+            this.otherDirection = false;
+            setTimeout(() => {
+                this.cooldownTime = false;
+            }, 1000);
         }
     }
 
