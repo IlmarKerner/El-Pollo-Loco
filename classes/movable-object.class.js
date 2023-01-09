@@ -150,10 +150,4 @@ class MovableObject extends DrawableObject {
         timepassed = timepassed / 1000; //Teilung durch 1000 ergibt Sekunden
         return timepassed < 0.1;
     }
-
-    bossReactToCharacterDistance() {
-        if (!this.isDead() && this.world.character.x <= 500 && !this.isHurt()) {
-            this.firstContact = true;
-        }
-    }
 }

@@ -219,10 +219,11 @@ class World {
         this.addObjectsToMap(this.level.flyingBottles);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.littlechicken);
-        this.addObjectsToMap(this.level.endboss);
+
         this.addObjectsToMap(this.throwBottle);
         // this.addObjectsToMap(this.splashBottle);
         this.ctx.translate(-this.camera_x, 0);
