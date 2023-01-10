@@ -6,6 +6,7 @@ class World {
     keyboard;
     camera_x = 0;
     cooldownTime = false;
+    hitEndboss = false;
 
     healthbar = new StatusBar();
     coinbar = new Coinbar();
@@ -35,21 +36,18 @@ class World {
             this.checkCollisionsWithCoins();
             // this.checkCollisionsWithChicken();
             // this.checkCollisionsWithEndboss();
+            // this.checkCollisionsWithLitteChicken();
             this.checkThorwObjectsRight();
             this.checkThorwObjectsLeft();
             this.checkCollisionsWithBottles();
             this.checkCollisionsWithFlyingBottles();
+            // this.endscreen();
             this.hitEnemy();
             this.hitEnemyFromTheTop();
             this.hitLittleChicken();
             this.hitLittleChickenFromTheTop();
-            // this.checkCollisionsWithLitteChicken();
-            // this.endscreen();
-
-        }, 1000 / 60);
-        setInterval(() => {
             this.hitBosschicken();
-        }, 150);
+        }, 50);
     }
 
 
@@ -198,9 +196,13 @@ class World {
     hitBosschicken() {
         this.level.endboss.forEach((endboss) => {
             this.throwBottle.forEach((throwBottle) => {
-                if (throwBottle.isColliding(endboss)) {
+                if (throwBottle.isColliding(endboss) && this.hitEndboss == false) {
+                    this.hitEndboss = true;
                     endboss.hitEndboss();
                     this.audio_hit_bottle.play();
+                    setTimeout(() => {
+                        this.hitEndboss = false;
+                    }, 1000);
                 }
             });
         });

@@ -48,6 +48,7 @@ class Endboss extends MovableObject {
     ]
 
     constructor(world) {
+
         super().loadImage(this.IMAGES_ALLERT[0]);
         this.loadImages(this.IMAGES_ALLERT);
         this.loadImages(this.IMAGES_WALK);
@@ -56,7 +57,11 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_DEAD_BOSS);
         this.speed = 1;
         this.x = 500;
-        this.animate();
+        this.world = world;
+        setTimeout(() => {
+            this.animate();
+        }, 1000);
+
     }
 
     angryBoss = true;

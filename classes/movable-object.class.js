@@ -107,6 +107,7 @@ class MovableObject extends DrawableObject {
         } else if (this.bossEnergy > 0) {
             this.lastHit = new Date().getTime();
         }
+        console.log(this.bossEnergy);
 
     }
 
