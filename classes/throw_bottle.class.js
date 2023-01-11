@@ -3,7 +3,6 @@ class ThrowBottle extends MovableObject {
     world;
     bottleAnimation = false;
 
-
     offset = {
         top: 10,
         bottom: 10,
@@ -27,7 +26,7 @@ class ThrowBottle extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png',
     ]
 
-    constructor(x, y) {
+    constructor(x, y, world) {
         super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.IMAGES_BOTTLE);
         this.loadImages(this.IMAGES_DAMAGED_BOTTLE);
@@ -35,30 +34,34 @@ class ThrowBottle extends MovableObject {
         this.y = y;
         this.height = 80;
         this.width = 80;
-        this.throw();
+        this.world = world;
+        this.throwRight();
+        this.throwLeft();
         this.animate();
-
-        // if (this.world.character.otherDirection == true) {
-        //     this.throwLeft(20, -100)
-        // } else {
-        //     this.throw(100, 150)
-        // }
     }
 
-    throw () {
+    throwRight() {
+        if (this.world.character.otherDirection = false) {
+            this.speedY = 20;
+            this.speedX = 10;
+            this.applyGravity();
+            setInterval(() => {
+                this.x += 10;
+            }, 1000 / 60);
+            this.otherDirection = false;
+        } else {
+            this.throwLeft();
+        }
+    }
+
+    throwleft() {
         this.speedY = 20;
         this.speedX = 10;
         this.applyGravity();
         setInterval(() => {
-            this.x += 10;
+            this.x -= 10;
         }, 1000 / 60);
-
-        // if (this.hitEndboss()) {
-        //     this.splashBottle();
-        //     console.log('klappt');
-        // } else {
-        //     this.animate();
-        // };
+        this.otherDirection = true;
     }
 
     throwLeft() {

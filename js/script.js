@@ -23,7 +23,7 @@ function playSound() {
 
 function fullscreen() {
     let fullscreen = document.getElementById('fullscreen');
-    enterFullscreen(element);
+    enterFullscreen(fullscreen);
 }
 
 function enterFullscreen(element) {
@@ -38,7 +38,7 @@ function enterFullscreen(element) {
 
 function leaveFullscreen() {
     let leaveFullscreen = document.getElementById('leaveFullscreen');
-    exitFullscreen();
+    exitFullscreen(leaveFullscreen);
 }
 
 function exitFullscreen() {
