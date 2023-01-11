@@ -1,11 +1,11 @@
 let mutedSound = false;
-let chickenSound = new Audio('../audio/chicken.mp3');
+let audio_background = new Audio('..audio/backgroundmusic.mp3');
 
 function muteSound() {
     mutedSound = true;
     document.getElementById('sound').classList.add('d-none');
     document.getElementById('soundmute').classList.remove('d-none');
-    chickenSound.pause();
+    audio_background.pause();
 }
 
 function playSound() {
@@ -14,11 +14,37 @@ function playSound() {
     document.getElementById('soundmute').classList.add('d-none');
     if (mutedSound == false) {
         setInterval(() => {
-            chickenSound.play();
+            audio_background.play();
         }, 1);
     } else {
-        chickenSound.pause();
+        audio_background.pause();
     }
+}
 
+function fullscreen() {
+    let fullscreen = document.getElementById('fullscreen');
+    enterFullscreen(element);
+}
 
+function enterFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    }
+}
+
+function leaveFullscreen() {
+    let leaveFullscreen = document.getElementById('leaveFullscreen');
+    exitFullscreen();
+}
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitRequestFullscreen) {
+        document.webkitRequestFullscreen();
+    }
 }

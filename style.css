@@ -35,9 +35,9 @@ canvas {
     width: 720px;
     height: 480px;
     position: absolute;
-    top: 39%;
+    top: 32%;
     left: 50%;
-    transform: translate(-50%, -40%);
+    transform: translate(-50%, -41%);
 }
 
 .start img {

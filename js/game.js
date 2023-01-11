@@ -6,15 +6,16 @@ let audio_shot = new Audio('../audio/shot.mp3')
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    // audio_shot.play();
-    // setTimeout(() => {
-    //         document.getElementById('shot').classList.remove('d-none')
-    //     },
-    //     300);
-    // setTimeout(() => {
-    //         document.getElementById('startscreen').classList.add('d-none')
-    //     },
-    //     2000);
+    audio_shot.play();
+    setTimeout(() => {
+            document.getElementById('shot').classList.remove('d-none')
+        },
+        300);
+    setTimeout(() => {
+            document.getElementById('startscreen').classList.add('d-none');
+
+        },
+        2000);
 }
 
 window.addEventListener("keydown", (e) => {

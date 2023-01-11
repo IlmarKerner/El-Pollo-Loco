@@ -7,6 +7,8 @@ class World {
     camera_x = 0;
     cooldownTime = false;
     hitEndboss = false;
+    characterGetHitet = false;
+    characterGetHitetByEndboss = false;
 
     healthbar = new StatusBar();
     coinbar = new Coinbar();
@@ -16,6 +18,7 @@ class World {
     audio_bottle = new Audio('../audio/bottle.mp3');
     audio_throw_bottle = new Audio('../audio/flyingBottles.mp3');
     audio_hit_bottle = new Audio('../audio/splashBottle.mp3');
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -34,9 +37,6 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisionsWithCoins();
-            // this.checkCollisionsWithChicken();
-            // this.checkCollisionsWithEndboss();
-            // this.checkCollisionsWithLitteChicken();
             this.checkThorwObjectsRight();
             this.checkThorwObjectsLeft();
             this.checkCollisionsWithBottles();
@@ -48,6 +48,12 @@ class World {
             this.hitLittleChickenFromTheTop();
             this.hitBosschicken();
         }, 50);
+        setInterval(() => {
+            this.checkCollisionsWithChicken();
+            this.checkCollisionsWithEndboss();
+            this.checkCollisionsWithLitteChicken();
+        }, 1000);
+
     }
 
 
@@ -82,28 +88,31 @@ class World {
 
     checkCollisionsWithChicken() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !this.character.isInAir()) {
+            if (this.character.isColliding(enemy) && !this.character.isInAir() && this.characterGetHitet == false) {
                 this.character.hit();
                 this.healthbar.setPercentHealth(this.character.energy);
+                this.characterGetHitet = true;
             }
         });
     }
 
     checkCollisionsWithLitteChicken() {
         this.level.littlechicken.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !this.character.isInAir()) {
+            if (this.character.isColliding(enemy) && !this.character.isInAir() && this.characterGetHitet == false) {
                 this.character.hit();
                 this.healthbar.setPercentHealth(this.character.energy);
+                this.characterGetHitet = true;
             }
         });
     }
 
     checkCollisionsWithEndboss() {
         this.level.endboss.forEach((endboss) => {
-            if (this.character.isColliding(endboss)) {
+            if (this.character.isColliding(endboss) && this.characterGetHitetByEndboss == false) {
                 this.character.hit();
                 this.character.hitCharacterWithEndbossAndChicken();
                 this.healthbar.setPercentHealth(this.character.energy);
+                this.characterGetHitetByEndboss = true;
             }
         });
     }
