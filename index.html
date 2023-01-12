@@ -27,6 +27,7 @@
     <script src="js/script.js"></script>
     <script src="js/game.js"></script>
     <script src="levels/level1.js"></script>
+    <script src="js/audio.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,8 +45,8 @@
             </div>
         </div>
         <div class="soundmute">
-            <img src="img/10_images/sound.png" id="sound" onclick="muteSound()">
-            <img src="img/10_images/mute.png" class="d-none" id="soundmute" onclick="playSound()">
+            <img src="img/10_images/sound.png" id="sound" onclick="muteSound(audio_background)">
+            <img src="img/10_images/mute.png" class="d-none" id="soundmute" onclick="playSound(audio_background)">
         </div>
         <canvas id="canvas" width="720" height="480">
             

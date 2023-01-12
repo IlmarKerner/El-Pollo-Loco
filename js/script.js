@@ -1,24 +1,43 @@
 let mutedSound = false;
-let audio_background = new Audio('..audio/backgroundmusic.mp3');
 
 function muteSound() {
     mutedSound = true;
     document.getElementById('sound').classList.add('d-none');
     document.getElementById('soundmute').classList.remove('d-none');
     audio_background.pause();
+
+    // Mute all other audio
+    audio_shot.muted = true;
+    audio_hit_bottle.muted = true;
+    audio_coin.muted = true;
+    audio_throw_bottle.muted = true;
+    audio_chicken2.muted = true;
+    walking_sound.muted = true;
+    audio_hurt.muted = true;
+    jumping_sound.muted = true;
+    audio_bossAttack.muted = true;
+    audio_bottle.muted = true;
+    audio_chicken.muted = true;
 }
 
 function playSound() {
     mutedSound = false;
     document.getElementById('sound').classList.remove('d-none');
     document.getElementById('soundmute').classList.add('d-none');
-    if (mutedSound == false) {
-        setInterval(() => {
-            audio_background.play();
-        }, 1);
-    } else {
-        audio_background.pause();
-    }
+    audio_background.play();
+
+    // Unmute all other audio
+    audio_shot.muted = false;
+    audio_hit_bottle.muted = false;
+    audio_coin.muted = false;
+    audio_throw_bottle.muted = false;
+    audio_chicken2.muted = false;
+    walking_sound.muted = false;
+    audio_hurt.muted = false;
+    jumping_sound.muted = false;
+    audio_bossAttack.muted = false;
+    audio_bottle.muted = false;
+    audio_chicken.muted = false;
 }
 
 function fullscreen() {

@@ -14,17 +14,11 @@ class World {
     coinbar = new Coinbar();
     bottlebar = new Bottlebar();
     throwBottle = [];
-    audio_coin = new Audio('../audio/coin.mp3');
-    audio_bottle = new Audio('../audio/bottle.mp3');
-    audio_throw_bottle = new Audio('../audio/flyingBottles.mp3');
-    audio_hit_bottle = new Audio('../audio/splashBottle.mp3');
-
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.loadBackgroundObjects();
         this.draw();
         this.setWorld();
         this.run();
@@ -218,16 +212,11 @@ class World {
         });
     }
 
-    loadBackgroundObjects() {
-        this.level.backgroundObjects.forEach((bgObject) => {
-            bgObject.draw(this.ctx);
-        });
-    }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
-        // this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level.backgroundObjects);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.healthbar);
         this.addToMap(this.coinbar);
