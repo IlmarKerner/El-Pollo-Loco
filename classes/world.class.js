@@ -24,6 +24,7 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.loadBackgroundObjects();
         this.draw();
         this.setWorld();
         this.run();
@@ -47,21 +48,20 @@ class World {
             this.hitLittleChicken();
             this.hitLittleChickenFromTheTop();
             this.hitBosschicken();
-        }, 50);
+        }, 100);
         setInterval(() => {
             this.checkCollisionsWithChicken();
             this.checkCollisionsWithEndboss();
             this.checkCollisionsWithLitteChicken();
-        }, 1000);
-
+        }, 500);
     }
 
 
-
+    // wirft die Flachen nach Rechts
     checkThorwObjectsRight() {
         if (this.keyboard.E && this.character.bottle > 0 && this.cooldownTime == false) {
             this.audio_throw_bottle.play();
-            let bottle = new ThrowBottle(this.character.x + 50, this.character.y + 100);
+            let bottle = new ThrowBottle(this.character.x + 50, this.character.y + 100, this.character.otherDirection);
             this.throwBottle.push(bottle);
             this.bottlebar.setPercentBottles(this.character.bottle -= 1);
             this.cooldownTime = true;
@@ -72,6 +72,7 @@ class World {
         }
     }
 
+    // wirft die Flaschen nach Links
     checkThorwObjectsLeft() {
         if (this.keyboard.E && this.character.bottle > 0 && this.cooldownTime == false) {
             this.audio_throw_bottle.play();
@@ -217,10 +218,16 @@ class World {
         });
     }
 
+    loadBackgroundObjects() {
+        this.level.backgroundObjects.forEach((bgObject) => {
+            bgObject.draw(this.ctx);
+        });
+    }
+
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
-        this.addObjectsToMap(this.level.backgroundObjects);
+        // this.addObjectsToMap(this.level.backgroundObjects);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.healthbar);
         this.addToMap(this.coinbar);
