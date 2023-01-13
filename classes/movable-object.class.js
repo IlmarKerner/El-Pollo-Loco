@@ -7,11 +7,10 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     coin = 0;
     bottle = 0;
-    chickenEnergy = 10;
-    littleChickenEnergy = 10;
-    bossEnergy = 30;
+
+
+
     firstContact = false;
-    walking_sound = new Audio('audio/walk.mp3');
     offset = {
         top: 0,
         bottom: 0,

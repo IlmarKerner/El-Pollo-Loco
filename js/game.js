@@ -5,7 +5,6 @@ let keyboard = new Keyboard();
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    audio_shot.play();
     setTimeout(() => {
             document.getElementById('shot').classList.remove('d-none')
         },
