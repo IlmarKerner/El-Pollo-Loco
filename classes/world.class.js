@@ -47,7 +47,7 @@ class World {
             this.hitLittleChickenFromTheTop();
             this.hitBosschicken();
             this.moveEndbossTowardsCharacter();
-        }, 100);
+        }, 50);
         setInterval(() => {
             this.checkCollisionsWithChicken();
             this.checkCollisionsWithEndboss();

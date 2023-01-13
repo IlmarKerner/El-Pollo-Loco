@@ -58,6 +58,26 @@ class MovableObject extends DrawableObject {
         this.speedY = 20;
     }
 
+    isColliding(mo) {
+        let myLeft = this.x + this.offset.left;
+        let myRight = this.x + this.width - this.offset.right;
+        let myTop = this.y + this.offset.top;
+        let myBottom = this.y + this.height - this.offset.bottom;
+        let otherLeft = mo.x + mo.offset.left;
+        let otherRight = mo.x + mo.width - mo.offset.right;
+        let otherTop = mo.y + mo.offset.top;
+        let otherBottom = mo.y + mo.height - mo.offset.bottom;
+
+        return myRight > otherLeft && myLeft < otherRight && myBottom > otherTop && myTop < otherBottom;
+    }
+
+    // isColliding(mo) {
+    //     return (this.X + this.width) >= mo.X && this.X <= (mo.X + mo.width) &&
+    //         (this.Y + this.offsetY + this.height) >= mo.Y &&
+    //         (this.Y + this.offsetY) <= (mo.Y + mo.height) &&
+    //         mo.onCollisionCourse;
+    // }
+
     // isColliding(mo) {
     //     return this.x + this.width > mo.x &&
     //         this.y + this.height > mo.y &&
@@ -65,12 +85,12 @@ class MovableObject extends DrawableObject {
     //         this.y < mo.y + mo.height;
     // }
 
-    isColliding(mo) {
-        return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
-            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
-    }
+    // isColliding(mo) {
+    //     return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+    //         this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+    //         this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+    //         this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+    // }
 
     hit() {
         this.energy -= 10;

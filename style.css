@@ -35,9 +35,9 @@ canvas {
     width: 720px;
     height: 480px;
     position: absolute;
-    top: 32%;
+    top: 36%;
     left: 50%;
-    transform: translate(-50%, -41%);
+    transform: translate(-50%, -50%);
 }
 
 .start img {
@@ -78,6 +78,12 @@ canvas {
 .bullet img {
     width: 20px;
     height: 20px;
+}
+
+.soundmute {
+    display: flex;
+    width: 720px;
+    justify-content: space-between;
 }
 
 .soundmute img {
@@ -230,4 +236,17 @@ canvas {
 
 .throwBottle img {
     width: 40px;
+}
+
+.fullscreenicons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80px;
+}
+
+.fullscreenicons img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
 }
