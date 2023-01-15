@@ -230,7 +230,7 @@ class World {
 
     hitLittleChickenFromTheTop() {
         this.level.littlechicken.forEach((littlechicken, i) => {
-            if (this.character.isColliding(littlechicken) && this.character.isInAir()) {
+            if (this.character.isColliding(littlechicken) && this.character.y > 80) {
                 littlechicken.hitLittleChicken();
                 this.character.jump();
                 if (mutedSound == false) {
@@ -279,9 +279,7 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.littlechicken);
-
         this.addObjectsToMap(this.throwBottle);
-        // this.addObjectsToMap(this.splashBottle);
         this.ctx.translate(-this.camera_x, 0);
         self = this;
         requestAnimationFrame(function() {
