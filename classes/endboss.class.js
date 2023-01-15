@@ -66,17 +66,9 @@ class Endboss extends MovableObject {
 
     }
 
-    angryBoss = true;
-
     animate() {
-        this.reactBoss = false;
         setInterval(() => {
-            if (this.world.character.x > 300) {
-                this.playAnimation(this.IMAGES_ALLERT);
-            } else if (this.world.character.x < 300) {
-                this.playAnimation(this.IMAGES_HURT_BOSS);
-            }
-
+            this.playAnimation(this.IMAGES_ALLERT);
         }, 150);
     }
 

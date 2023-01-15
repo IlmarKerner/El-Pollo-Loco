@@ -8,8 +8,6 @@ class MovableObject extends DrawableObject {
     coin = 0;
     bottle = 0;
 
-
-
     firstContact = false;
     offset = {
         top: 0,

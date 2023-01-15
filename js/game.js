@@ -11,7 +11,6 @@ function init() {
         300);
     setTimeout(() => {
             document.getElementById('startscreen').classList.add('d-none');
-
         },
         2000);
 }
