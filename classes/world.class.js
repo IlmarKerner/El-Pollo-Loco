@@ -9,7 +9,7 @@ class World {
     hitEndboss = false;
     characterGetHitet = false;
     characterGetHitetByEndboss = false;
-
+    coinimage = new Coinimage();
     healthbar = new StatusBar();
     coinbar = new Coinbar();
     bottlebar = new Bottlebar();
@@ -46,7 +46,6 @@ class World {
             this.hitLittleChicken();
             this.hitLittleChickenFromTheTop();
             this.hitBosschicken();
-            this.moveEndbossTowardsCharacter();
         }, 50);
         setInterval(() => {
             this.checkCollisionsWithChicken();
@@ -55,16 +54,16 @@ class World {
         }, 500);
     }
 
-    moveEndbossTowardsCharacter() {
-        let distance = this.character.x - this.level.endboss[0].x;
-        if (Math.abs(distance) < 200) {
-            if (distance > 0) {
-                this.level.endboss[0].x += this.level.endboss[0].speed;
-            } else {
-                this.level.endboss[0].x -= this.level.endboss[0].speed;
-            }
-        }
-    }
+    // moveEndbossTowardsCharacter() {
+    //     let distance = this.character.x - this.level.endboss[0].x;
+    //     if (Math.abs(distance) < 200) {
+    //         if (distance > 0) {
+    //             this.level.endboss[0].x += this.level.endboss[0].speed;
+    //         } else {
+    //             this.level.endboss[0].x -= this.level.endboss[0].speed;
+    //         }
+    //     }
+    // }
 
     // wirft die Flachen nach Rechts
     checkThorwObjectsRight() {
@@ -280,6 +279,7 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.littlechicken);
         this.addObjectsToMap(this.throwBottle);
+        this.addToMap(this.coinimage);
         this.ctx.translate(-this.camera_x, 0);
         self = this;
         requestAnimationFrame(function() {

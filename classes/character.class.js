@@ -77,33 +77,37 @@ class Character extends MovableObject {
             // this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
-                walking_sound.play();
+                if (mutedSound == false) {
+                    walking_sound.play();
+                }
                 this.otherDirection = false;
             } else {
                 walking_sound.pause();
             }
             if (this.world.keyboard.LEFT && this.x > -600) {
                 this.moveLeft();
-                walking_sound.play();
+                if (mutedSound == false) {
+                    walking_sound.play();
+                }
                 this.otherDirection = true;
             }
-
             if (this.world.keyboard.SPACE && !this.isInAir()) {
                 this.jump();
-                jumping_sound.play();
+                if (mutedSound == false) {
+                    jumping_sound.play();
+                }
             }
-
             this.world.camera_x = -this.x + 80;
         }, 1000 / 60);
-
-
 
         setInterval(() => { //walk Animation
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
-                audio_hurt.play();
+                if (mutedSound == false) {
+                    audio_hurt.play();
+                }
             } else if (this.isInAir()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {

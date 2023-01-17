@@ -28,6 +28,8 @@
     <script src="js/game.js"></script>
     <script src="levels/level1.js"></script>
     <script src="js/audio.js"></script>
+    <script src="classes/coinnumber.class.js"></script>
+    <script src="classes/bottlenumber.class.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,10 +37,10 @@
 </head>
 
 <body>
-    <div class="el-pollo-loco">
+    <div class="el-pollo-loco" id="el-pollo-loco">
         <h1>El Pollo Loco</h1>
         <div class="start" id="startscreen">
-            <img src="img\9_intro_outro_screens\start\startscreen_1.png">
+            <img src="img\9_intro_outro_screens\start\startscreen_1.png" id="startscreenBackground">
             <button onclick="initLevel(), init()">Start</button>
             <div class="bullet d-none" id="shot">
                 <img class="bullet" src="img/10_images/bullet.png" alt="">
@@ -47,16 +49,51 @@
         <div class="soundmute">
             <img src="img/10_images/mute.png" id="sound" onclick="muteSound(audio_background)">
             <img src="img/10_images/sound.png" class="d-none" id="soundmute" onclick="playSound(audio_background)">
+            <img src="img/10_images/joystick.png" id="gameplay" onclick="showGameplay()">
             <div class="fullscreenicons">
-                <img src="img/10_images/fullscreen.png" id="fullscreen">
-                <img src="img/10_images/minimize.png" id="leaveFullscreen">
+                <img src="img/10_images/fullscreen.png" id="fullscreen" onclick="fullscreen()">
+                <img src="img/10_images/minimize.png" id="leaveFullscreen" onclick="leaveFullscreen()">
             </div>
         </div>
-
         <canvas id="canvas" width="720" height="480">
             
-    </canvas>
+        </canvas>
+        <div class="gameplayWindow d-none" id="gameplayWindow">
+            <div class="gameplayBackground">
+                <img src="img/5_background/first_half_background.png">
+            </div>
 
+            <div class="goBackButton">
+                <img src="img/10_images/go-back-arrow.png" onclick="goBack()">
+            </div>
+            <div class="description">
+                <h2>Description :</h2>
+                <div class="left">
+                    <h3>Left:</h3>
+                    <img src="img/10_images/left.png">
+                    <h3>or</h3>
+                    <h4>A</h4>
+                </div>
+                <div class="right">
+                    <h3>Right:</h3>
+                    <img src="img/10_images/right.png">
+                    <h3>or</h3>
+                    <h4>D</h4>
+                </div>
+                <div class="up">
+                    <h3>Jump:</h3>
+                    <img src="img/10_images/up.png">
+                    <h3>or</h3>
+                    <h4>Space</h4>
+                </div>
+                <div class="throwBottle">
+                    <h3>Throw Bottle:</h3>
+                    <img src="img/10_images/enter.png">
+                    <h3>or</h3>
+                    <h4>E</h4>
+                </div>
+            </div>
+        </div>
 
         <!-- <div id="endscreen" class="endscreen d-none">
         <div class="endscreenImage1">
@@ -67,33 +104,7 @@
         </div>
         <button>New Game</button>
     </div> -->
-        <div class="description">
-            <h2>Description :</h2>
-            <div class="left">
-                <h3>Left:</h3>
-                <img src="img/10_images/left.png">
-                <h3>or</h3>
-                <h4>A</h4>
-            </div>
-            <div class="right">
-                <h3>Right:</h3>
-                <img src="img/10_images/right.png">
-                <h3>or</h3>
-                <h4>D</h4>
-            </div>
-            <div class="up">
-                <h3>Jump:</h3>
-                <img src="img/10_images/up.png">
-                <h3>or</h3>
-                <h4>Space</h4>
-            </div>
-            <div class="throwBottle">
-                <h3>Throw Bottle:</h3>
-                <img src="img/10_images/enter.png">
-                <h3>or</h3>
-                <h4>E</h4>
-            </div>
-        </div>
+
     </div>
 
 </body>

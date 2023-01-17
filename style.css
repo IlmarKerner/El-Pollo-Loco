@@ -31,13 +31,15 @@ body {
     background-position: center;
 }
 
-canvas {
+#canvas {
     background-color: black;
+    width: 100%;
+    height: 100%;
 }
 
 .start {
-    width: 720px;
-    height: 480px;
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -45,8 +47,8 @@ canvas {
 }
 
 .start img {
-    width: 720px;
-    height: 480px;
+    width: 100%;
+    height: 100%;
 }
 
 .start button {
@@ -95,8 +97,8 @@ canvas {
 }
 
 .soundmute img {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
     margin-right: 10px;
 }
@@ -105,9 +107,9 @@ canvas {
     width: 720px;
     height: 480px;
     position: absolute;
-    top: 39%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -40%);
+    transform: translate(-50%, -50%);
     z-index: 5;
     display: flex;
     justify-content: center;
@@ -153,8 +155,11 @@ canvas {
     height: 220px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
-    bottom: -48%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .description h2 {
@@ -258,4 +263,31 @@ canvas {
     width: 30px;
     height: 30px;
     cursor: pointer;
+}
+
+.gameplayWindow {
+    position: absolute;
+    width: 720px;
+    height: 480px;
+    z-index: 3;
+}
+
+.gameplayBackground img {
+    width: 720px;
+    height: 480px;
+}
+
+.goBackButton {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    z-index: 4;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.goBackButton img {
+    width: 30px;
+    height: 30px;
 }

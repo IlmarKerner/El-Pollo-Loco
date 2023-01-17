@@ -1,5 +1,5 @@
 function fullscreen() {
-    let fullscreen = document.getElementById('fullscreen');
+    let fullscreen = document.getElementById('el-pollo-loco');
     enterFullscreen(fullscreen);
 }
 
@@ -14,7 +14,7 @@ function enterFullscreen(element) {
 }
 
 function leaveFullscreen() {
-    let leaveFullscreen = document.getElementById('leaveFullscreen');
+    let leaveFullscreen = document.getElementById('el-pollo-loco');
     exitFullscreen(leaveFullscreen);
 }
 
@@ -24,4 +24,12 @@ function exitFullscreen() {
     } else if (document.webkitRequestFullscreen) {
         document.webkitRequestFullscreen();
     }
+}
+
+function showGameplay() {
+    document.getElementById('gameplayWindow').classList.remove('d-none');
+}
+
+function goBack() {
+    document.getElementById('gameplayWindow').classList.add('d-none');
 }
