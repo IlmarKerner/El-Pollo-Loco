@@ -9,6 +9,7 @@ class World {
     hitEndboss = false;
     characterGetHitet = false;
     characterGetHitetByEndboss = false;
+    bottleimage = new Bottleimage();
     coinimage = new Coinimage();
     healthbar = new StatusBar();
     coinbar = new Coinbar();
@@ -46,6 +47,7 @@ class World {
             this.hitLittleChicken();
             this.hitLittleChickenFromTheTop();
             this.hitBosschicken();
+            // this.moveEndbossTowardsCharacter();
         }, 50);
         setInterval(() => {
             this.checkCollisionsWithChicken();
@@ -56,14 +58,23 @@ class World {
 
     // moveEndbossTowardsCharacter() {
     //     let distance = this.character.x - this.level.endboss[0].x;
-    //     if (Math.abs(distance) < 200) {
+    //     if (distance < 400 && !this.level.endboss[0].firstContact) {
+    //         this.level.endboss[0].firstContact = true;
     //         if (distance > 0) {
     //             this.level.endboss[0].x += this.level.endboss[0].speed;
     //         } else {
     //             this.level.endboss[0].x -= this.level.endboss[0].speed;
     //         }
+    //         if (distance <= 30 && distance >= 79) {
+    //             this.level.endboss[0].playAnimation(this.level.endboss[0].IMAGES_ATTACK);
+    //         } else if (distance >= 80 && distance <= 199) {
+    //             this.level.endboss[0].playAnimation(this.level.endboss[0].IMAGES_ALLERT);
+    //         } else if (distance > 200) {
+    //             this.level.endboss[0].playAnimation(this.level.endboss[0].IMAGES_WALK);
+    //         }
     //     }
     // }
+
 
     // wirft die Flachen nach Rechts
     checkThorwObjectsRight() {
@@ -265,21 +276,22 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level.clouds);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.healthbar);
         this.addToMap(this.coinbar);
         this.addToMap(this.bottlebar);
+        this.addToMap(this.coinimage);
+        this.addToMap(this.bottleimage);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.flyingBottles);
         this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.littlechicken);
         this.addObjectsToMap(this.throwBottle);
-        this.addToMap(this.coinimage);
         this.ctx.translate(-this.camera_x, 0);
         self = this;
         requestAnimationFrame(function() {
