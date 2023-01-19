@@ -31,16 +31,6 @@ function initLevel() {
             new LittleChicken(),
             new LittleChicken(),
             new LittleChicken(),
-            new LittleChicken(),
-            new LittleChicken(),
-            new LittleChicken(),
-            new LittleChicken(),
-            new LittleChicken(),
-            new LittleChicken(),
-            new LittleChicken(),
-            new LittleChicken(),
-            new LittleChicken(),
-            new LittleChicken(),
         ],
 
         [
@@ -105,23 +95,17 @@ function initLevel() {
             new BackgroundOject('img/5_background/layers/1_first_layer/2.png', 719 * 7)
         ], [
             new Bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 250),
-            new Bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png', 850),
-            new Bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 1000),
-            new Bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png', 1100),
-            new Bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 1350),
             new Bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png', 1450),
-            new Bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 1900),
-            new Bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png', 2100),
-            new Bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 2300),
-            new Bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png', 2400),
-            new Bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 2500)
+            new Bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 2700),
+            new Bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png', 3400),
+            new Bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 4000)
 
         ], [
             new FlyingBottle('img/6_salsa_bottle/salsa_bottle.png', 550),
             new FlyingBottle('img/6_salsa_bottle/salsa_bottle.png', 1250),
-            new FlyingBottle('img/6_salsa_bottle/salsa_bottle.png', 2000),
+            new FlyingBottle('img/6_salsa_bottle/salsa_bottle.png', 2200),
             new FlyingBottle('img/6_salsa_bottle/salsa_bottle.png', 1650),
-            new FlyingBottle('img/6_salsa_bottle/salsa_bottle.png', 2300)
+            new FlyingBottle('img/6_salsa_bottle/salsa_bottle.png', 3000)
         ], [
             new Coin(),
             new Coin(),

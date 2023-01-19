@@ -29,15 +29,15 @@ class StatusBar extends DrawableObject {
     }
 
     healthIndex() {
-        if (this.percent_health == 100) {
+        if (this.percent_health == 50) {
             return 0;
-        } else if (this.percent_health > 80) {
-            return 1;
-        } else if (this.percent_health > 60) {
-            return 2;
         } else if (this.percent_health > 40) {
-            return 3;
+            return 1;
+        } else if (this.percent_health > 30) {
+            return 2;
         } else if (this.percent_health > 20) {
+            return 3;
+        } else if (this.percent_health > 10) {
             return 4;
         } else {
             return 5;

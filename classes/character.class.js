@@ -1,11 +1,12 @@
 class Character extends MovableObject {
     world;
-    speed = 10;
+    speed = 7.5;
     y = 75;
+    backgroundSound = false;
 
     offset = {
         top: 120,
-        bottom: 30,
+        bottom: 10,
         left: 40,
         right: 30,
     }
@@ -98,11 +99,20 @@ class Character extends MovableObject {
                 }
             }
             this.world.camera_x = -this.x + 80;
-        }, 1000 / 60);
+        }, 1000 / 40);
 
         let characterAnimationInterval = setInterval(() => { //walk Animation
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                if (!mutedSound) {
+                    audio_lose.play();
+                }
+                if (this.backgroundSound) {
+                    audio_background.pause();
+                    audio_bossAttack.pause();
+                }
+                this.backgroundSound = true;
+                stopGame();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
                 if (!mutedSound) {

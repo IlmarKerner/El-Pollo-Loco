@@ -33,3 +33,12 @@ function showGameplay() {
 function goBack() {
     document.getElementById('gameplayWindow').classList.add('d-none');
 }
+
+function endscreen() {
+    document.getElementById('endscreen').classList.remove('d-none');
+}
+
+function restartGame() {
+    window.location.reload();
+    document.getElementById('endscreen').classList.add('d-none');
+}

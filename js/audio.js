@@ -63,7 +63,7 @@ function playChickenSound() {
 }
 
 
-let mutedSound = true;
+let mutedSound = false;
 
 function muteSound() {
     mutedSound = true;

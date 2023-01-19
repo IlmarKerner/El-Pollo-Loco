@@ -3,7 +3,7 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 1;
-    energy = 100;
+    energy = 50;
     lastHit = 0;
     coin = 0;
     bottle = 0;
@@ -57,13 +57,6 @@ class MovableObject extends DrawableObject {
         this.speedY = 20;
     }
 
-    // isColliding(mo) {
-    //     return this.x + this.width > mo.x &&
-    //         this.y + this.height > mo.y &&
-    //         this.x < mo.x + mo.width &&
-    //         this.y < mo.y + mo.height;
-    // }
-
     isColliding(mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
@@ -73,6 +66,26 @@ class MovableObject extends DrawableObject {
 
     hit() {
         this.energy -= 10;
+        if (this.energy <= 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+        console.log(this.energy);
+    }
+
+    hitWithLittleChicken() {
+        this.energy -= 1;
+        if (this.energy <= 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+        console.log(this.energy);
+    }
+
+    hitWithEndboss() {
+        this.energy -= 30;
         if (this.energy <= 0) {
             this.energy = 0;
         } else {
@@ -107,15 +120,6 @@ class MovableObject extends DrawableObject {
         }
         console.log(this.bossEnergy);
 
-    }
-
-    hitCharacterWithEndbossAndChicken() {
-        this.bossEnergy -= 5;
-        if (this.bossEnergy <= 0) {
-            this.bossEnergy = 0;
-        } else if (this.bossEnergy > 0) {
-            this.lastHit = new Date().getTime();
-        }
     }
 
     coinHit() {

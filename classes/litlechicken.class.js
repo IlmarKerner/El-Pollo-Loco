@@ -37,7 +37,7 @@ class LittleChicken extends MovableObject {
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
             }
-        }, 100);
+        }, 150);
         intervalIDs.push(littleChickenAnimationInterval, littleChickenMoveInterval);
     }
 }

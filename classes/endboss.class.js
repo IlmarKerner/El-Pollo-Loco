@@ -11,6 +11,7 @@ class Endboss extends MovableObject {
     bossDeadtimer = 0;
     hurtBoss = 0;
     hurtBossSecondTime = 0;
+    backgroundSound = false;
 
     IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -62,7 +63,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT_BOSS);
         this.loadImages(this.IMAGES_DEAD_BOSS);
         this.speed = 15;
-        this.x = 2000;
+        this.x = 4500;
         this.world = world;
         setTimeout(() => {
             this.animate();
@@ -91,13 +92,13 @@ class Endboss extends MovableObject {
     }
 
     handleSound(distanceLeft, distanceRight) {
-        if (distanceLeft < 1000 || distanceLeft < 1000) {
+        if (distanceLeft < 1000 || distanceLeft < 1000 && this.bossFirstAttack) {
             if (!mutedSound) {
                 audio_background.pause();
                 audio_bossAttack.play();
             }
         }
-        if (distanceLeft > 1500 || distanceRight > 1500) {
+        if (distanceLeft > 1500 || distanceRight > 1500 && this.bossFirstAttack) {
             if (!mutedSound) {
                 audio_background.play();
                 audio_bossAttack.pause();
@@ -195,8 +196,11 @@ class Endboss extends MovableObject {
         if (!mutedSound) {
             audio_win.play();
         }
-        audio_background.pause();
-        audio_bossAttack.pause();
+        if (this.backgroundSound) {
+            audio_background.pause();
+            audio_bossAttack.pause();
+        }
+        this.backgroundSound = true;
         stopGame();
     }
 }

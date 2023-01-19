@@ -50,12 +50,13 @@ class World {
             this.hitLittleChicken();
             this.hitLittleChickenFromTheTop();
             this.hitBosschicken();
-        }, 50);
-        let runInterval2 = setInterval(() => {
             this.checkCollisionsWithChicken();
             this.checkCollisionsWithEndboss();
             this.checkCollisionsWithLitteChicken();
-        }, 500);
+        }, 50);
+        let runInterval2 = setInterval(() => {
+
+        }, 50);
         intervalIDs.push(runInterval1, runInterval2);
     }
 
@@ -102,6 +103,9 @@ class World {
                 if (!mutedSound) {
                     audio_hurt.play();
                 }
+                setTimeout(() => {
+                    this.characterGetHitet = false;
+                }, 1000);
             }
         });
     }
@@ -109,12 +113,15 @@ class World {
     checkCollisionsWithLitteChicken() {
         this.level.littlechicken.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.isInAir() && !this.characterGetHitet) {
-                this.character.hit();
+                this.character.hitWithLittleChicken();
                 this.healthbar.setPercentHealth(this.character.energy);
                 this.characterGetHitet = true;
                 if (!mutedSound) {
                     audio_hurt.play();
                 }
+                setTimeout(() => {
+                    this.characterGetHitet = false;
+                }, 1000);
             }
         });
     }
@@ -122,13 +129,15 @@ class World {
     checkCollisionsWithEndboss() {
         this.level.endboss.forEach((endboss) => {
             if (this.character.isColliding(endboss) && !this.characterGetHitetByEndboss) {
-                this.character.hit();
-                this.character.hitCharacterWithEndbossAndChicken();
+                this.character.hitWithEndboss();
                 this.healthbar.setPercentHealth(this.character.energy);
                 this.characterGetHitetByEndboss = true;
                 if (!mutedSound) {
                     audio_hurt.play();
                 }
+                setTimeout(() => {
+                    this.characterGetHitetByEndboss = false;
+                }, 1000);
             }
         });
     }
