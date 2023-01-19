@@ -104,5 +104,5 @@ function stopGame() {
             const id = intervalIDs[i];
             clearInterval(id);
         }
-    }, 2000);
+    }, 500);
 }

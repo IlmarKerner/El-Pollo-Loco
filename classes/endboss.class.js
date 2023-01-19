@@ -9,6 +9,7 @@ class Endboss extends MovableObject {
     bossFirstAttack = false;
     bossSecondAttack = false;
     bossDeadtimer = 0;
+    hurtBoss = 0;
 
     IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -71,99 +72,125 @@ class Endboss extends MovableObject {
         let bossInterval = setInterval(() => {
             let distanceLeft = this.x - this.world.character.x; // distanceLeft entspricht der Distanz, wenn der Character links vom Boss ist
             let distanceRight = this.world.character.x - this.x; // distanceRight entspricht der Distanz, wenn der Character rechts vom Boss ist
-            if (distanceLeft < 1000 || distanceLeft < 1000) {
-                if (mutedSound == false) {
-                    audio_background.pause();
-                    audio_bossAttack.play();
-                }
-            }
-            if (distanceLeft > 1500 || distanceRight > 1500) {
-                if (mutedSound == false) {
-                    audio_background.play();
-                    audio_bossAttack.pause();
-                }
-            }
+            this.handleSound(distanceLeft, distanceRight);
             if (this.bossEnergy == 30) {
-                if (distanceLeft < 500 && distanceLeft > 200) {
-                    this.playAnimation(this.IMAGES_WALK);
-                    this.x -= this.speed;
-                }
-                if (distanceRight < 500 && distanceRight > 500) {
-                    this.playAnimation(this.IMAGES_WALK);
-                    this.x += this.speed;
-                    this.otherDirection = true;
-                }
-                if (distanceLeft < 300 && distanceLeft > -50) { // Wenn der Character links vom Boss ist und innerhalb von 400px
-                    this.firstContact = true;
-                    this.x -= this.speed; // Bewegen in Richtung des Characters
-                    this.playAnimation(this.IMAGES_ATTACK);
-                    this.otherDirection = false;
-                } else if (distanceRight < 500 && distanceRight > 0) { // Wenn der Character rechts vom Boss ist und innerhalb von 400px
-                    this.firstContact = true;
-                    this.x += this.speed; // Bewegen in Richtung des Characters
-                    this.playAnimation(this.IMAGES_ATTACK);
-                    this.otherDirection = true;
-                }
+                this.movementAtEnergy30(distanceLeft, distanceRight);
             }
             if (this.bossEnergy == 20) {
-                if (this.bossFirstAttack == false) {
-                    this.speed = 0;
-                    this.playAnimation(this.IMAGES_HURT_BOSS);
-                    this.bossFirstAttack = true;
-                } else
-                if (distanceLeft < 600 && distanceLeft > 200 && this.bossFirstAttack == true) {
-                    this.playAnimation(this.IMAGES_WALK);
-                    this.x -= this.speed;
-                }
-                if (distanceRight < 500 && distanceRight > 500) {
-                    this.playAnimation(this.IMAGES_WALK);
-                    this.x += this.speed;
-                    this.otherDirection = true;
-                }
-                if (distanceLeft < 300 && distanceLeft > -50) { // Wenn der Character links vom Boss ist und innerhalb von 400px
-                    this.x -= this.speed; // Bewegen in Richtung des Characters
-                    this.playAnimation(this.IMAGES_ATTACK);
-                    this.otherDirection = false;
-                } else if (distanceRight < 500 && distanceRight > 0) { // Wenn der Character rechts vom Boss ist und innerhalb von 400px
-                    this.x += this.speed; // Bewegen in Richtung des Characters
-                    this.playAnimation(this.IMAGES_ATTACK);
-                    this.otherDirection = true;
-                }
-                this.speed = 30;
+                this.movementAtEnergy20(distanceLeft, distanceRight);
             }
             if (this.bossEnergy == 10) {
-                if (this.bossSecondAttack == false) {
-                    this.speed = 0;
-                    this.playAnimation(this.IMAGES_HURT_BOSS);
-                    this.bossSecondAttack = true;
-                } else
-                if (distanceLeft < 600 && distanceLeft > 200 && this.bossSecondAttack == true) {
-                    this.playAnimation(this.IMAGES_WALK);
-                    this.x -= this.speed;
-                }
-                if (distanceRight < 500 && distanceRight > 500) {
-                    this.playAnimation(this.IMAGES_WALK);
-                    this.x += this.speed;
-                    this.otherDirection = true;
-                }
-                if (distanceLeft < 300 && distanceLeft > -50) { // Wenn der Character links vom Boss ist und innerhalb von 400px
-                    this.x -= this.speed; // Bewegen in Richtung des Characters
-                    this.playAnimation(this.IMAGES_ATTACK);
-                    this.otherDirection = false;
-                } else if (distanceRight < 500 && distanceRight > 0) { // Wenn der Character rechts vom Boss ist und innerhalb von 400px
-                    this.x += this.speed; // Bewegen in Richtung des Characters
-                    this.playAnimation(this.IMAGES_ATTACK);
-                    this.otherDirection = true;
-                }
-                this.speed = 40;
+                this.movementAtEnergy10(distanceLeft, distanceRight);
             }
-            if (this.bossEnergy == 0 && this.bossDeadtimer < 10) {
-                this.speed = 0;
-                this.playAnimation(this.IMAGES_DEAD_BOSS);
-                this.bossDeadtimer++;
-                this.stopGame();
+            if (this.bossEnergy == 0 && this.bossDeadtimer < 15) {
+                this.endbossDead();
             }
         }, 150);
         intervalIDs.push(bossInterval);
+    }
+
+    handleSound(distanceLeft, distanceRight) {
+        if (distanceLeft < 1000 || distanceLeft < 1000) {
+            if (mutedSound == false) {
+                audio_background.pause();
+                audio_bossAttack.play();
+            }
+        }
+        if (distanceLeft > 1500 || distanceRight > 1500) {
+            if (mutedSound == false) {
+                audio_background.play();
+                audio_bossAttack.pause();
+            }
+        }
+    }
+
+    movementAtEnergy30(distanceLeft, distanceRight) {
+        if (distanceLeft < 500 && distanceLeft > 200) {
+            this.playAnimation(this.IMAGES_WALK);
+            this.moveLeft();
+        }
+        if (distanceRight < 500 && distanceRight > 500) {
+            this.playAnimation(this.IMAGES_WALK);
+            this.moveRight();
+            this.otherDirection = true;
+        }
+        if (distanceLeft < 300 && distanceLeft > -50) { // Wenn der Character links vom Boss ist und innerhalb von 400px
+            this.firstContact = true;
+            this.moveLeft(); // Bewegen in Richtung des Characters
+            this.playAnimation(this.IMAGES_ATTACK);
+            this.otherDirection = false;
+        } else if (distanceRight < 500 && distanceRight > 0) { // Wenn der Character rechts vom Boss ist und innerhalb von 400px
+            this.firstContact = true;
+            this.moveRight(); // Bewegen in Richtung des Characters
+            this.playAnimation(this.IMAGES_ATTACK);
+            this.otherDirection = true;
+        }
+    }
+
+    movementAtEnergy20(distanceLeft, distanceRight) {
+        if (this.bossFirstAttack == false && this.hurtBoss < 10) {
+            this.speed = 0;
+            this.playAnimation(this.IMAGES_HURT_BOSS);
+            this.bossFirstAttack = true;
+        } else
+        if (distanceLeft < 600 && distanceLeft > 200 && this.bossFirstAttack == true && this.hurtBoss >= 10) {
+            this.playAnimation(this.IMAGES_WALK);
+            this.moveLeft();
+        }
+        if (distanceRight < 500 && distanceRight > 500 && this.hurtBoss >= 10) {
+            this.playAnimation(this.IMAGES_WALK);
+            this.moveRight();
+            this.otherDirection = true;
+        }
+        if (distanceLeft < 300 && distanceLeft > -50 && this.hurtBoss >= 10) { // Wenn der Character links vom Boss ist und innerhalb von 400px
+            this.moveLeft(); // Bewegen in Richtung des Characters
+            this.playAnimation(this.IMAGES_ATTACK);
+            this.otherDirection = false;
+        } else if (distanceRight < 500 && distanceRight > 0 && this.hurtBoss >= 10) { // Wenn der Character rechts vom Boss ist und innerhalb von 400px
+            this.moveRight(); // Bewegen in Richtung des Characters
+            this.playAnimation(this.IMAGES_ATTACK);
+            this.otherDirection = true;
+        }
+        this.speed = 30;
+        this.hurtBoss++;
+    }
+
+    movementAtEnergy10(distanceLeft, distanceRight) {
+        if (this.bossSecondAttack == false) {
+            this.speed = 0;
+            this.playAnimation(this.IMAGES_HURT_BOSS);
+            this.bossSecondAttack = true;
+        } else
+        if (distanceLeft < 600 && distanceLeft > 200 && this.bossSecondAttack == true) {
+            this.playAnimation(this.IMAGES_WALK);
+            this.moveLeft();
+        }
+        if (distanceRight < 500 && distanceRight > 500) {
+            this.playAnimation(this.IMAGES_WALK);
+            this.moveRight();
+            this.otherDirection = true;
+        }
+        if (distanceLeft < 300 && distanceLeft > -50) { // Wenn der Character links vom Boss ist und innerhalb von 400px
+            this.moveLeft(); // Bewegen in Richtung des Characters
+            this.playAnimation(this.IMAGES_ATTACK);
+            this.otherDirection = false;
+        } else if (distanceRight < 500 && distanceRight > 0) { // Wenn der Character rechts vom Boss ist und innerhalb von 400px
+            this.moveRight(); // Bewegen in Richtung des Characters
+            this.playAnimation(this.IMAGES_ATTACK);
+            this.otherDirection = true;
+        }
+        this.speed = 40;
+    }
+
+    endbossDead() {
+        this.speed = 0;
+        this.playAnimation(this.IMAGES_DEAD_BOSS);
+        this.bossDeadtimer++;
+        if (mutedSound == false) {
+            audio_win.play();
+        }
+        audio_background.pause();
+        audio_bossAttack.pause();
+        stopGame();
     }
 }
