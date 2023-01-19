@@ -26,11 +26,11 @@ class LittleChicken extends MovableObject {
     }
 
     animate() {
-        setInterval(() => {
+        let littleChickenMoveInterval = setInterval(() => {
                 this.moveLeft();
             },
             1000 / 60);
-        setInterval(() => {
+        let littleChickenAnimationInterval = setInterval(() => {
             if (this.littleChickenEnergy == 0) {
                 this.speed = 0;
                 this.playAnimation(this.IMAGES_DEAD);
@@ -38,5 +38,6 @@ class LittleChicken extends MovableObject {
                 this.playAnimation(this.IMAGES_WALKING);
             }
         }, 100);
+        intervalIDs.push(littleChickenAnimationInterval, littleChickenMoveInterval);
     }
 }

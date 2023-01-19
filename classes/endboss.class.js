@@ -7,7 +7,8 @@ class Endboss extends MovableObject {
     world;
     firstContact = false;
     bossFirstAttack = false;
-
+    bossSecondAttack = false;
+    bossDeadtimer = 0;
 
     IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -59,7 +60,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT_BOSS);
         this.loadImages(this.IMAGES_DEAD_BOSS);
         this.speed = 15;
-        this.x = 1000;
+        this.x = 2000;
         this.world = world;
         setTimeout(() => {
             this.animate();
@@ -67,11 +68,23 @@ class Endboss extends MovableObject {
 
     }
     animate() {
-        setInterval(() => {
+        let bossInterval = setInterval(() => {
             let distanceLeft = this.x - this.world.character.x; // distanceLeft entspricht der Distanz, wenn der Character links vom Boss ist
             let distanceRight = this.world.character.x - this.x; // distanceRight entspricht der Distanz, wenn der Character rechts vom Boss ist
+            if (distanceLeft < 1000 || distanceLeft < 1000) {
+                if (mutedSound == false) {
+                    audio_background.pause();
+                    audio_bossAttack.play();
+                }
+            }
+            if (distanceLeft > 1500 || distanceRight > 1500) {
+                if (mutedSound == false) {
+                    audio_background.play();
+                    audio_bossAttack.pause();
+                }
+            }
             if (this.bossEnergy == 30) {
-                if (distanceLeft < 600 && distanceLeft > 200) {
+                if (distanceLeft < 500 && distanceLeft > 200) {
                     this.playAnimation(this.IMAGES_WALK);
                     this.x -= this.speed;
                 }
@@ -116,72 +129,41 @@ class Endboss extends MovableObject {
                     this.playAnimation(this.IMAGES_ATTACK);
                     this.otherDirection = true;
                 }
-
                 this.speed = 30;
             }
-
+            if (this.bossEnergy == 10) {
+                if (this.bossSecondAttack == false) {
+                    this.speed = 0;
+                    this.playAnimation(this.IMAGES_HURT_BOSS);
+                    this.bossSecondAttack = true;
+                } else
+                if (distanceLeft < 600 && distanceLeft > 200 && this.bossSecondAttack == true) {
+                    this.playAnimation(this.IMAGES_WALK);
+                    this.x -= this.speed;
+                }
+                if (distanceRight < 500 && distanceRight > 500) {
+                    this.playAnimation(this.IMAGES_WALK);
+                    this.x += this.speed;
+                    this.otherDirection = true;
+                }
+                if (distanceLeft < 300 && distanceLeft > -50) { // Wenn der Character links vom Boss ist und innerhalb von 400px
+                    this.x -= this.speed; // Bewegen in Richtung des Characters
+                    this.playAnimation(this.IMAGES_ATTACK);
+                    this.otherDirection = false;
+                } else if (distanceRight < 500 && distanceRight > 0) { // Wenn der Character rechts vom Boss ist und innerhalb von 400px
+                    this.x += this.speed; // Bewegen in Richtung des Characters
+                    this.playAnimation(this.IMAGES_ATTACK);
+                    this.otherDirection = true;
+                }
+                this.speed = 40;
+            }
+            if (this.bossEnergy == 0 && this.bossDeadtimer < 10) {
+                this.speed = 0;
+                this.playAnimation(this.IMAGES_DEAD_BOSS);
+                this.bossDeadtimer++;
+                this.stopGame();
+            }
         }, 150);
+        intervalIDs.push(bossInterval);
     }
 }
-// bossReactToCharacterDistance() {
-//     let i = 0;
-//     this.bossAttack = false;
-//     let firstContact = false;
-//     setInterval(() => {
-//         if (i > 10 && this.world.character.x > 800 && this.world.character.x < 1500 && !this.bossIsDead()) {
-//             this.playAnimation(this.IMAGES_HURT_BOSS);
-//             setTimeout(() => {
-//                 this.moveLeft();
-//                 this.playAnimation(this.IMAGES_WALK);
-//                 this.otherDirection = false;
-//                 this.bossAttack = true;
-//             }, 3000);
-//             audio_background.pause();
-//             audio_bossAttack.play();
-//         } else if (this.world.character.x > -500 && this.world.character.x < 500 && !this.bossIsDead()) {
-//             this.playAnimation(this.IMAGES_WALK);
-//             this.moveRight();
-//             this.otherDirection = true;
-//             this.bossAttack = false;
-//         }
-//         if (this.world.character.x < 800 && !this.bossIsDead()) {
-//             this.playAnimation(this.IMAGES_ATTACK);
-//         }
-//         if (this.bossEnergy == 20 && !this.angryBoss && !this.bossIsDead()) {
-//             this.playAnimation(this.IMAGES_HURT_BOSS);
-//             setTimeout(() => {
-//                 this.playAnimation(this.IMAGES_ATTACK);
-//             }, 3000);
-//         } else if (this.bossEnergy == 10 && !this.angryBoss && !this.bossIsDead()) {
-//             this.playAnimation(this.IMAGES_HURT_BOSS);
-//             setTimeout(() => {
-//                 this.playAnimation(this.IMAGES_ATTACK);
-//             }, 3000);
-//         }
-
-//         i++;
-//         if (this.world.character.x > 800 && !firstContact && !this.bossIsDead()) {
-//             firstContact = true;
-//             i = 0;
-//             this.speed = 0;
-//             this.playAnimation(this.IMAGES_ALLERT);
-//             setTimeout(() => {
-//                 this.speed = 10;
-//             }, 3000);
-//             if (mutedSound == false) {
-//                 audio_background.play();
-//                 audio_bossAttack.pause();
-//             }
-//         }
-
-//         if (this.bossEnergy == 0) {
-//             this.speed = 0;
-//             this.playAnimation(this.IMAGES_DEAD_BOSS);
-//             if (mutedSound == false) {
-//                 audio_background.pause();
-//                 audio_bossAttack.pause();
-//                 audio_win.play();
-//             }
-//         }
-//     }, 150);
-// }

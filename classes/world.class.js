@@ -15,11 +15,15 @@ class World {
     coinbar = new Coinbar();
     bottlebar = new Bottlebar();
     throwBottle = [];
+    runInterval1;
+    runInterval2;
+    endboss;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.endboss = new Endboss(this);
         this.draw();
         this.setWorld();
         this.run();
@@ -35,46 +39,25 @@ class World {
     }
 
     run() {
-        setInterval(() => {
+        let runInterval1 = setInterval(() => {
             this.checkCollisionsWithCoins();
             this.checkThorwObjectsRight();
             this.checkThorwObjectsLeft();
             this.checkCollisionsWithBottles();
             this.checkCollisionsWithFlyingBottles();
-            // this.endscreen();
             this.hitEnemy();
             this.hitEnemyFromTheTop();
             this.hitLittleChicken();
             this.hitLittleChickenFromTheTop();
             this.hitBosschicken();
-            // this.moveEndbossTowardsCharacter();
         }, 50);
-        setInterval(() => {
+        let runInterval2 = setInterval(() => {
             this.checkCollisionsWithChicken();
             this.checkCollisionsWithEndboss();
             this.checkCollisionsWithLitteChicken();
         }, 500);
+        intervalIDs.push(runInterval1, runInterval2);
     }
-
-    // moveEndbossTowardsCharacter() {
-    //     let distance = this.character.x - this.level.endboss[0].x;
-    //     if (distance < 400 && !this.level.endboss[0].firstContact) {
-    //         this.level.endboss[0].firstContact = true;
-    //         if (distance > 0) {
-    //             this.level.endboss[0].x += this.level.endboss[0].speed;
-    //         } else {
-    //             this.level.endboss[0].x -= this.level.endboss[0].speed;
-    //         }
-    //         if (distance <= 30 && distance >= 79) {
-    //             this.level.endboss[0].playAnimation(this.level.endboss[0].IMAGES_ATTACK);
-    //         } else if (distance >= 80 && distance <= 199) {
-    //             this.level.endboss[0].playAnimation(this.level.endboss[0].IMAGES_ALLERT);
-    //         } else if (distance > 200) {
-    //             this.level.endboss[0].playAnimation(this.level.endboss[0].IMAGES_WALK);
-    //         }
-    //     }
-    // }
-
 
     // wirft die Flachen nach Rechts
     checkThorwObjectsRight() {

@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let intervalIDs = [];
 
 function init() {
     canvas = document.getElementById('canvas');
@@ -96,3 +97,12 @@ window.addEventListener("keyup", (e) => {
         keyboard.ENTER = false;
     }
 });
+
+function stopGame() {
+    setTimeout(() => {
+        for (let i = 0; i < intervalIDs.length; i++) {
+            const id = intervalIDs[i];
+            clearInterval(id);
+        }
+    }, 2000);
+}

@@ -47,27 +47,27 @@ class ThrowBottle extends MovableObject {
         this.speedY = 20;
         this.speedX = 10;
         this.applyGravity();
-        setInterval(() => {
+        let throwBottleRightInterval = setInterval(() => {
             this.x += 10;
         }, 1000 / 60);
+        intervalIDs.push(throwBottleRightInterval);
         this.otherDirection = false;
     }
-
 
     throwLeft() {
         this.speedY = 20;
         this.speedX = -10;
         this.applyGravity();
-        setInterval(() => {
+        let throwBottleLeftInterval = setInterval(() => {
             this.x -= 10;
         }, 1000 / 60);
+        intervalIDs.push(throwBottleLeftInterval);
     }
 
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_BOTTLE);
         }, 1000 / 20);
-
     }
 
     splashBottle() {

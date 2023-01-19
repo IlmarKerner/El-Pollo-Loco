@@ -25,11 +25,11 @@ class Chicken extends MovableObject {
     }
 
     animate() {
-        setInterval(() => {
+        let chickenMoveInterval = setInterval(() => {
                 this.moveLeft();
             },
             1000 / 60);
-        setInterval(() => {
+        let chickenAnimationInterval = setInterval(() => {
             if (this.chickenEnergy == 0) {
                 this.speed = 0;
                 this.playAnimation(this.IMAGES_DEAD);
@@ -37,6 +37,6 @@ class Chicken extends MovableObject {
                 this.playAnimation(this.IMAGES_WALKING);
             }
         }, 100);
-
+        intervalIDs.push(chickenMoveInterval, chickenAnimationInterval);
     }
 }
