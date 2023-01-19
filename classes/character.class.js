@@ -113,6 +113,9 @@ class Character extends MovableObject {
                 }
                 this.backgroundSound = true;
                 stopGame();
+                setTimeout(() => {
+                    endscreen();
+                }, 500);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
                 if (!mutedSound) {
