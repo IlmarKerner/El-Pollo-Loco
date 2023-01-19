@@ -27,7 +27,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        if (mutedSound == false) {
+        if (!mutedSound) {
             audio_shot.play();
             audio_background.play();
         }
@@ -61,8 +61,8 @@ class World {
 
     // wirft die Flachen nach Rechts
     checkThorwObjectsRight() {
-        if (this.keyboard.E && this.character.bottle > 0 && this.cooldownTime == false) {
-            if (mutedSound == false) {
+        if (this.keyboard.E && this.character.bottle > 0 && !this.cooldownTime) {
+            if (!mutedSound) {
                 audio_throw_bottle.play();
             }
             let bottle = new ThrowBottle(this.character.x + 50, this.character.y + 100, this.character.otherDirection);
@@ -78,8 +78,8 @@ class World {
 
     // wirft die Flaschen nach Links
     checkThorwObjectsLeft() {
-        if (this.keyboard.E && this.character.bottle > 0 && this.cooldownTime == false) {
-            if (mutedSound == false) {
+        if (this.keyboard.E && this.character.bottle > 0 && !this.cooldownTime) {
+            if (!mutedSound) {
                 audio_throw_bottle.play();
             }
             let bottle = new ThrowBottle(this.character.x + 0, this.character.y + 100);
@@ -95,11 +95,11 @@ class World {
 
     checkCollisionsWithChicken() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !this.character.isInAir() && this.characterGetHitet == false) {
+            if (this.character.isColliding(enemy) && !this.character.isInAir() && !this.characterGetHitet) {
                 this.character.hit();
                 this.healthbar.setPercentHealth(this.character.energy);
                 this.characterGetHitet = true;
-                if (mutedSound == false) {
+                if (!mutedSound) {
                     audio_hurt.play();
                 }
             }
@@ -108,11 +108,11 @@ class World {
 
     checkCollisionsWithLitteChicken() {
         this.level.littlechicken.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !this.character.isInAir() && this.characterGetHitet == false) {
+            if (this.character.isColliding(enemy) && !this.character.isInAir() && !this.characterGetHitet) {
                 this.character.hit();
                 this.healthbar.setPercentHealth(this.character.energy);
                 this.characterGetHitet = true;
-                if (mutedSound == false) {
+                if (!mutedSound) {
                     audio_hurt.play();
                 }
             }
@@ -121,12 +121,12 @@ class World {
 
     checkCollisionsWithEndboss() {
         this.level.endboss.forEach((endboss) => {
-            if (this.character.isColliding(endboss) && this.characterGetHitetByEndboss == false) {
+            if (this.character.isColliding(endboss) && !this.characterGetHitetByEndboss) {
                 this.character.hit();
                 this.character.hitCharacterWithEndbossAndChicken();
                 this.healthbar.setPercentHealth(this.character.energy);
                 this.characterGetHitetByEndboss = true;
-                if (mutedSound == false) {
+                if (!mutedSound) {
                     audio_hurt.play();
                 }
             }
@@ -139,7 +139,7 @@ class World {
                 this.character.coinHit();
                 this.coinbar.setPercentCoins(this.character.coin);
                 this.level.coins.splice(i, 1);
-                if (mutedSound == false) {
+                if (!mutedSound) {
                     audio_coin.play();
                 }
             }
@@ -152,7 +152,7 @@ class World {
                 this.character.bottleHit();
                 this.bottlebar.setPercentBottles(this.character.bottle);
                 this.level.bottles.splice(i, 1);
-                if (mutedSound == false) {
+                if (!mutedSound) {
                     audio_bottle.play();
                 }
             }
@@ -165,7 +165,7 @@ class World {
                 this.character.bottleHit();
                 this.bottlebar.setPercentBottles(this.character.bottle);
                 this.level.flyingBottles.splice(i, 1);
-                if (mutedSound == false) {
+                if (!mutedSound) {
                     audio_bottle.play();
                 }
             }
@@ -177,7 +177,7 @@ class World {
             this.throwBottle.forEach((throwBottle) => {
                 if (throwBottle.isColliding(enemies)) {
                     enemies.hitChicken();
-                    if (mutedSound == false) {
+                    if (!mutedSound) {
                         audio_hit_bottle.play();
                         audio_chicken2.play();
                     }
@@ -194,7 +194,7 @@ class World {
             if (this.character.isColliding(enemies) && this.character.isInAir()) {
                 enemies.hitChicken();
                 this.character.jump();
-                if (mutedSound == false) {
+                if (!mutedSound) {
                     audio_chicken2.play();
                 }
                 setTimeout(() => {
@@ -209,7 +209,7 @@ class World {
             this.throwBottle.forEach((throwBottle) => {
                 if (throwBottle.isColliding(littlechicken)) {
                     littlechicken.hitLittleChicken();
-                    if (mutedSound == false) {
+                    if (!mutedSound) {
                         audio_chicken2.play();
                         audio_hit_bottle.play();
                     }
@@ -226,7 +226,7 @@ class World {
             if (this.character.isColliding(littlechicken) && this.character.y > 80) {
                 littlechicken.hitLittleChicken();
                 this.character.jump();
-                if (mutedSound == false) {
+                if (!mutedSound) {
                     audio_chicken2.play();
                 }
                 setTimeout(() => {
@@ -242,7 +242,7 @@ class World {
                 if (throwBottle.isColliding(endboss) && this.hitEndboss == false) {
                     this.hitEndboss = true;
                     endboss.hitEndboss();
-                    if (mutedSound == false) {
+                    if (!mutedSound) {
                         audio_chicken2.play();
                         audio_hit_bottle.play();
                     }
@@ -294,7 +294,7 @@ class World {
         }
 
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        // mo.drawFrame(this.ctx);
 
 
         if (mo.otherDirection) {

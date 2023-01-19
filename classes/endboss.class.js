@@ -10,6 +10,7 @@ class Endboss extends MovableObject {
     bossSecondAttack = false;
     bossDeadtimer = 0;
     hurtBoss = 0;
+    hurtBossSecondTime = 0;
 
     IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -85,19 +86,19 @@ class Endboss extends MovableObject {
             if (this.bossEnergy == 0 && this.bossDeadtimer < 15) {
                 this.endbossDead();
             }
-        }, 150);
+        }, 100);
         intervalIDs.push(bossInterval);
     }
 
     handleSound(distanceLeft, distanceRight) {
         if (distanceLeft < 1000 || distanceLeft < 1000) {
-            if (mutedSound == false) {
+            if (!mutedSound) {
                 audio_background.pause();
                 audio_bossAttack.play();
             }
         }
         if (distanceLeft > 1500 || distanceRight > 1500) {
-            if (mutedSound == false) {
+            if (!mutedSound) {
                 audio_background.play();
                 audio_bossAttack.pause();
             }
@@ -128,25 +129,27 @@ class Endboss extends MovableObject {
     }
 
     movementAtEnergy20(distanceLeft, distanceRight) {
-        if (this.bossFirstAttack == false && this.hurtBoss < 10) {
+        if (!this.bossFirstAttack && this.hurtBoss < 10) {
             this.speed = 0;
             this.playAnimation(this.IMAGES_HURT_BOSS);
-            this.bossFirstAttack = true;
+            if (this.hurtBoss == 7) {
+                this.bossFirstAttack = true;
+            }
         } else
-        if (distanceLeft < 600 && distanceLeft > 200 && this.bossFirstAttack == true && this.hurtBoss >= 10) {
+        if (distanceLeft < 800 && distanceLeft > 200 && this.bossFirstAttack && this.hurtBoss >= 10) {
             this.playAnimation(this.IMAGES_WALK);
             this.moveLeft();
         }
-        if (distanceRight < 500 && distanceRight > 500 && this.hurtBoss >= 10) {
+        if (distanceRight < 800 && distanceRight > 200 && this.hurtBoss >= 10) {
             this.playAnimation(this.IMAGES_WALK);
             this.moveRight();
             this.otherDirection = true;
         }
-        if (distanceLeft < 300 && distanceLeft > -50 && this.hurtBoss >= 10) { // Wenn der Character links vom Boss ist und innerhalb von 400px
+        if (distanceLeft < 200 && distanceLeft > -50 && this.hurtBoss >= 10) { // Wenn der Character links vom Boss ist und innerhalb von 400px
             this.moveLeft(); // Bewegen in Richtung des Characters
             this.playAnimation(this.IMAGES_ATTACK);
             this.otherDirection = false;
-        } else if (distanceRight < 500 && distanceRight > 0 && this.hurtBoss >= 10) { // Wenn der Character rechts vom Boss ist und innerhalb von 400px
+        } else if (distanceRight < 200 && distanceRight > 0 && this.hurtBoss >= 10) { // Wenn der Character rechts vom Boss ist und innerhalb von 400px
             this.moveRight(); // Bewegen in Richtung des Characters
             this.playAnimation(this.IMAGES_ATTACK);
             this.otherDirection = true;
@@ -156,10 +159,12 @@ class Endboss extends MovableObject {
     }
 
     movementAtEnergy10(distanceLeft, distanceRight) {
-        if (this.bossSecondAttack == false) {
+        if (!this.bossSecondAttack && this.hurtBossSecondTime < 10) {
             this.speed = 0;
             this.playAnimation(this.IMAGES_HURT_BOSS);
-            this.bossSecondAttack = true;
+            if (this.hurtBossSecondTime == 7) {
+                this.bossSecondAttack = true;
+            }
         } else
         if (distanceLeft < 600 && distanceLeft > 200 && this.bossSecondAttack == true) {
             this.playAnimation(this.IMAGES_WALK);
@@ -180,13 +185,14 @@ class Endboss extends MovableObject {
             this.otherDirection = true;
         }
         this.speed = 40;
+        this.hurtBossSecondTime++;
     }
 
     endbossDead() {
         this.speed = 0;
         this.playAnimation(this.IMAGES_DEAD_BOSS);
         this.bossDeadtimer++;
-        if (mutedSound == false) {
+        if (!mutedSound) {
             audio_win.play();
         }
         audio_background.pause();
