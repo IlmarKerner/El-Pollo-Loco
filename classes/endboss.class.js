@@ -6,6 +6,8 @@ class Endboss extends MovableObject {
     y = -30;
     world;
     firstContact = false;
+    bossFirstAttack = false;
+
 
     IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -56,7 +58,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT_BOSS);
         this.loadImages(this.IMAGES_DEAD_BOSS);
-        this.speed = 10;
+        this.speed = 15;
         this.x = 1000;
         this.world = world;
         setTimeout(() => {
@@ -90,8 +92,35 @@ class Endboss extends MovableObject {
                     this.otherDirection = true;
                 }
             }
+            if (this.bossEnergy == 20) {
+                if (this.bossFirstAttack == false) {
+                    this.speed = 0;
+                    this.playAnimation(this.IMAGES_HURT_BOSS);
+                    this.bossFirstAttack = true;
+                } else
+                if (distanceLeft < 600 && distanceLeft > 200 && this.bossFirstAttack == true) {
+                    this.playAnimation(this.IMAGES_WALK);
+                    this.x -= this.speed;
+                }
+                if (distanceRight < 500 && distanceRight > 500) {
+                    this.playAnimation(this.IMAGES_WALK);
+                    this.x += this.speed;
+                    this.otherDirection = true;
+                }
+                if (distanceLeft < 300 && distanceLeft > -50) { // Wenn der Character links vom Boss ist und innerhalb von 400px
+                    this.x -= this.speed; // Bewegen in Richtung des Characters
+                    this.playAnimation(this.IMAGES_ATTACK);
+                    this.otherDirection = false;
+                } else if (distanceRight < 500 && distanceRight > 0) { // Wenn der Character rechts vom Boss ist und innerhalb von 400px
+                    this.x += this.speed; // Bewegen in Richtung des Characters
+                    this.playAnimation(this.IMAGES_ATTACK);
+                    this.otherDirection = true;
+                }
 
-        }, 100);
+                this.speed = 30;
+            }
+
+        }, 150);
     }
 }
 // bossReactToCharacterDistance() {
