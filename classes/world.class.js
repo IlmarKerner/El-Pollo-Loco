@@ -53,11 +53,8 @@ class World {
             this.checkCollisionsWithChicken();
             this.checkCollisionsWithEndboss();
             this.checkCollisionsWithLitteChicken();
-        }, 50);
-        let runInterval2 = setInterval(() => {
-
-        }, 50);
-        intervalIDs.push(runInterval1, runInterval2);
+        }, 1000 / 60);
+        intervalIDs.push(runInterval1);
     }
 
     // wirft die Flachen nach Rechts
@@ -200,7 +197,7 @@ class World {
 
     hitEnemyFromTheTop() {
         this.level.enemies.forEach((enemies, i) => {
-            if (this.character.isColliding(enemies) && this.character.isInAir()) {
+            if (this.character.isColliding(enemies) && this.character.isInAir() && !this.character.isHurt()) {
                 enemies.hitChicken();
                 this.character.jump();
                 if (!mutedSound) {
@@ -232,9 +229,11 @@ class World {
 
     hitLittleChickenFromTheTop() {
         this.level.littlechicken.forEach((littlechicken, i) => {
-            if (this.character.isColliding(littlechicken) && this.character.y > 80) {
+            if (this.character.isColliding(littlechicken) && this.character.y > 120 && !this.character.isHurt()) {
                 littlechicken.hitLittleChicken();
-                this.character.jump();
+                if (this.character.isInAir()) {
+                    this.character.jump();
+                }
                 if (!mutedSound) {
                     audio_chicken2.play();
                 }

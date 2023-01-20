@@ -202,5 +202,8 @@ class Endboss extends MovableObject {
         }
         this.backgroundSound = true;
         stopGame();
+        setTimeout(() => {
+            endscreen();
+        }, 500);
     }
 }

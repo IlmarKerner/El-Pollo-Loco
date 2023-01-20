@@ -44,22 +44,22 @@ class ThrowBottle extends MovableObject {
     }
 
     throwRight() {
-        this.speedY = 20;
-        this.speedX = 10;
+        this.speedY = 12;
+        this.speedX = 5;
         this.applyGravity();
         let throwBottleRightInterval = setInterval(() => {
-            this.x += 10;
+            this.x += 7;
         }, 1000 / 60);
         intervalIDs.push(throwBottleRightInterval);
         this.otherDirection = false;
     }
 
     throwLeft() {
-        this.speedY = 20;
-        this.speedX = -10;
+        this.speedY = 12;
+        this.speedX = -5;
         this.applyGravity();
         let throwBottleLeftInterval = setInterval(() => {
-            this.x -= 10;
+            this.x -= 7;
         }, 1000 / 60);
         intervalIDs.push(throwBottleLeftInterval);
     }

@@ -28,14 +28,17 @@ function exitFullscreen() {
 
 function showGameplay() {
     document.getElementById('gameplayWindow').classList.remove('d-none');
+    stopGame();
 }
 
 function goBack() {
     document.getElementById('gameplayWindow').classList.add('d-none');
+    startIntervals();
 }
 
 function endscreen() {
     document.getElementById('endscreen').classList.remove('d-none');
+    document.getElementById('mobileButtons').classList.add('d-none');
 }
 
 function restartGame() {

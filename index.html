@@ -36,7 +36,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body onload="mobileButtons()">
     <div class="el-pollo-loco" id="el-pollo-loco">
         <h1>El Pollo Loco</h1>
         <div class="start" id="startscreen">
@@ -103,6 +103,25 @@
                 <img src="img/5_background/first_half_background.png">
             </div>
             <button onclick="restartGame()">New Game</button>
+        </div>
+        <div class="mobileButtons" id="mobileButtons">
+            <div class="movebuttons">
+                <img src="img/10_images/left-arrow.png" id="btnLeft">
+                <img src="img/10_images/right-arrow.png" id="btnRight">
+            </div>
+            <div class="actionbuttons">
+                <img src="img/10_images/jump.png" id="btnJump">
+                <img src="img/10_images/bottle.png" id="btnThrowBottle">
+            </div>
+        </div>
+
+
+    </div>
+    <div class="wrongFormate">
+        <img src="backgroundimage/background.png">
+        <h1>Turn your mobile!</h1>
+        <div class="imageTurnSmartphone">
+            <img src="img/10_images/turn-mobile.png">
         </div>
 
     </div>

@@ -3,7 +3,7 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 1;
-    energy = 50;
+    energy = 100;
     lastHit = 0;
     coin = 0;
     bottle = 0;
@@ -58,12 +58,12 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(mo) {
-        return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
-            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
-    }
-
+            return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+                this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+                this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+                this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+        }
+        // Character erleidet schaden
     hit() {
         this.energy -= 10;
         if (this.energy <= 0) {
@@ -75,7 +75,7 @@ class MovableObject extends DrawableObject {
     }
 
     hitWithLittleChicken() {
-        this.energy -= 1;
+        this.energy -= 0;
         if (this.energy <= 0) {
             this.energy = 0;
         } else {
@@ -151,6 +151,6 @@ class MovableObject extends DrawableObject {
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; //Differenz in Millisekunden
         timepassed = timepassed / 1000; //Teilung durch 1000 ergibt Sekunden
-        return timepassed < 0.1;
+        return timepassed < 0.5;
     }
 }
