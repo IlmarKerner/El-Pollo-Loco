@@ -189,7 +189,7 @@ class World {
                     }
                     setTimeout(() => {
                         this.level.enemies.splice(i, 1);
-                    }, 500);
+                    }, 250);
                 }
             });
         });
@@ -205,7 +205,7 @@ class World {
                 }
                 setTimeout(() => {
                     this.level.enemies.splice(i, 1);
-                }, 500);
+                }, 250);
             }
         });
     }
@@ -221,7 +221,7 @@ class World {
                     }
                     setTimeout(() => {
                         this.level.littlechicken.splice(i, 1);
-                    }, 500);
+                    }, 250);
                 }
             });
         });
@@ -239,7 +239,7 @@ class World {
                 }
                 setTimeout(() => {
                     this.level.littlechicken.splice(i, 1);
-                }, 500);
+                }, 250);
             }
         });
     }
