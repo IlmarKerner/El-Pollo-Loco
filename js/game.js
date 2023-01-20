@@ -16,6 +16,7 @@ function init() {
         },
         2000);
     mobileButtons();
+    document.getElementById('gameplay').classList.add('d-none');
 }
 
 window.addEventListener("keydown", (e) => {

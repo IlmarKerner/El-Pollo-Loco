@@ -28,7 +28,6 @@ function exitFullscreen() {
 
 function showGameplay() {
     document.getElementById('gameplayWindow').classList.remove('d-none');
-    stopGame();
 }
 
 function goBack() {
