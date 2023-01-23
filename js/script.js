@@ -1,6 +1,13 @@
 function fullscreen() {
     let fullscreen = document.getElementById('el-pollo-loco');
     enterFullscreen(fullscreen);
+    document.getElementById('leaveFullscreen').classList.remove('d-none');
+    document.getElementById('fullscreen').classList.add('d-none');
+    document.getElementById('startscreen').classList.add('fullscreen-mode');
+    document.getElementById('startscreen').classList.remove('start');
+    document.getElementById('leaveFullscreen').classList.add('filter-invert');
+    document.getElementById('gameplay').classList.add('filter-invert');
+    document.getElementById('canvas').style = "height: auto";
 }
 
 function enterFullscreen(element) {
@@ -16,6 +23,13 @@ function enterFullscreen(element) {
 function leaveFullscreen() {
     let leaveFullscreen = document.getElementById('el-pollo-loco');
     exitFullscreen(leaveFullscreen);
+    document.getElementById('leaveFullscreen').classList.add('d-none');
+    document.getElementById('fullscreen').classList.remove('d-none');
+    document.getElementById('startscreen').classList.remove('fullscreen-mode');
+    document.getElementById('startscreen').classList.add('start');
+    document.getElementById('leaveFullscreen').classList.remove('filter-invert');
+    document.getElementById('gameplay').classList.remove('filter-invert');
+    document.getElementById('canvas').style = "height: 100%";
 }
 
 function exitFullscreen() {

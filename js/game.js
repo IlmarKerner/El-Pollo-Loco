@@ -59,6 +59,10 @@ window.addEventListener("keydown", (e) => {
     if (e.keyCode == 13) {
         keyboard.ENTER = true;
     }
+
+    if (e.keyCode == 27) {
+        keyboard.ESC = true;
+    }
 });
 
 window.addEventListener("keyup", (e) => {
@@ -99,6 +103,9 @@ window.addEventListener("keyup", (e) => {
 
     if (e.keyCode == 13) {
         keyboard.ENTER = false;
+    }
+    if (e.keyCode == 27) {
+        keyboard.ESC = false;
     }
 });
 
